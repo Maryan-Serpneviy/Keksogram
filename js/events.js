@@ -4,10 +4,6 @@
 var imgContainer = document.querySelector('.pictures');
 var bigPictureCloseBtn = bigPicture.querySelector('.big-picture__cancel');
 
-var closeBigPicture = function() {
-    bigPicture.classList.add('hidden');
-};
-
 var openBigPicture = function(evt) {
     var target = evt.target;
     if (target.className === 'picture__img') {
@@ -23,43 +19,51 @@ var openBigPicture = function(evt) {
     }    
 };
 
+var closeBigPicture = function() {
+    bigPicture.classList.add('hidden');
+};
+
+var onBigPictureEscPress = function(evt) {
+    if (evt.key === 'Escape') {
+        closeBigPicture();
+    }
+};
+
 imgContainer.addEventListener('click', openBigPicture);
 
 bigPictureCloseBtn.addEventListener('click', closeBigPicture);
 
-document.addEventListener('keydown', function(evt) {
-    if (evt.key === 'Escape') {
-        closeBigPicture();
-    }
-});
+document.addEventListener('keydown', onBigPictureEscPress);
 
 // UPLOAD
 var uploadFile = document.querySelector('#upload-file');
 var uploadCancel = document.querySelector('#upload-cancel');
 var imgUpload = document.querySelector('.img-upload__overlay');
 
-var closeImgUpload = function() {
+var openFilters = function() {
+    imgUpload.classList.remove('hidden');
+};
+
+var closeFilters = function() {
     imgUpload.classList.add('hidden');
     clearFileInputField('upload-file');    
+};
+
+var onFiltersEscPress = function(evt) {
+    if (evt.key === 'Escape') {
+        closeFilters();
+    }
 };
 
 var clearFileInputField = function(Id) {
     document.getElementById(Id).innerHTML = document.getElementById(Id).innerHTML;
 };
 
-uploadFile.addEventListener('change', function () {
-    imgUpload.classList.remove('hidden');
-});
+uploadFile.addEventListener('change', openFilters);
 
-uploadCancel.addEventListener('click', function () {
-    closeImgUpload();
-});
+uploadCancel.addEventListener('click', closeFilters);
 
-document.addEventListener('keydown', function(evt) {
-    if (evt.key === 'Escape') {
-        closeImgUpload();
-    }
-});
+document.addEventListener('keydown', onFiltersEscPress);
 
 // IMG FILTERS
 var scaleLine = imgUpload.querySelector('.scale__line');
