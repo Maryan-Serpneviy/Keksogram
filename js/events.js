@@ -87,17 +87,6 @@ effects.forEach(function(elem) {
     });
 });
 
-/*
-var effectsSet = imgUpload.querySelector('.effects__list');
-effectsSet.addEventListener('click', function(evt) {
-    var target = evt.target;
-    if (target.tagName === 'li') {
-        alert('target');
-        
-    }
-});
-*/
-
 // VALIDATION
 var MAX_HASHTAGS = 5;
 
