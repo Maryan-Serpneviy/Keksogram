@@ -91,6 +91,8 @@ effects.forEach(function(elem) {
 
 // VALIDATION
 var MAX_HASHTAGS = 5;
+var MAX_HASHTAG_LENGTH = 20;
+var userHashtags = document.querySelector('.text__hashtags');
 
 var validateHashtags = function (arr) {
     var arrLowerCase = [];
@@ -111,7 +113,7 @@ var validateHashtags = function (arr) {
             userHashtags.setCustomValidity('Hashtag ' + arr[j] + ' must begin with "#".');
         } else if (arr[j].slice(1).indexOf('#') !== -1) {
             userHashtags.setCustomValidity('Hashtags ' + arr[j] + ' must be separated by a space.');
-        } else if (arr[j].length > 20) {
+        } else if (arr[j].length > MAX_HASHTAG_LENGTH) {
             userHashtags.setCustomValidity('The maximum length of one hashtag is 20 characters, including "#". Shorten your hashtag ' + arr[j] + '.');
         }
     }
