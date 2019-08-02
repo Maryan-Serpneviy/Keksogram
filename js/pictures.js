@@ -1,7 +1,7 @@
 'use strict';
 
-const PICTURES_COUNT = 25;
-const LIKES = {
+var PICTURES_COUNT = 25;
+var LIKES = {
     min: 15,
     max: 200
 };
@@ -37,74 +37,72 @@ Object.defineProperty(
     }
 );
 
-function getRandomNumber(min, max) {
+var getRandomNumber = function(min, max) {
     return Math.floor(min + Math.random() * (max - min + 1));
-}
+};
 
-function getRandomArrayElement(arr) {
+var getRandomArrayElement = function(arr) {
     return arr[Math.floor(Math.random() * arr.length)];
-}
+};
 
-function generateRandomComment(source) {
+var generateRandomComment = function(source) {
     var comments = [];
     var commentsQuantity = getRandomNumber(1, source.length);
     var commentLength = getRandomNumber(1, 2);
-    for (let i = 0; i < commentsQuantity; ++i) {
+    for (var i = 0; i < commentsQuantity; ++i) {
         comments[i] = '';
-        for (let j = 0; j < commentLength; ++j) {
+        for (var j = 0; j < commentLength; ++j) {
             comments[i] += ' ' + getRandomArrayElement(source);
         }
     }
     return comments;
-}
+};
 
-function generatePictureData(index) {
+var generatePictureData = function(index) {
     return {
         url: 'photos/' + (index + 1) + '.jpg',
         likes: getRandomNumber(LIKES.min, LIKES.max),
         comments: generateRandomComment(COMMENTS_PATTERNS),
         description: DESCRIPTION_PATTERNS.randomElement()
     }
-}
+};
 
-function generatePicturesPreview(picturesCount) {
+var generatePicturesPreview = function(picturesCount) {
     var picturesItems = [];
-    for (let i = 0; i < picturesCount; ++i) {
+    for (var i = 0; i < picturesCount; ++i) {
         picturesItems[i] = generatePictureData(i);
     }
     return picturesItems;
-}
+};
 
 var pictures = generatePicturesPreview(PICTURES_COUNT);
 
-function renderElement(data) {
+var renderElement = function(data) {
     var thumbElement = pictureTemplate.querySelector('.picture__link').cloneNode(true);
     thumbElement.querySelector('.picture__img').src = data.url;
     thumbElement.querySelector('.picture__stat--likes').textContent = data.likes;
     thumbElement.querySelector('.picture__stat--comments').textContent = data.comments.length;
     return thumbElement;
-}
+};
 
-function renderPictures() {
+var renderPictures = function() {
     var fragment = document.createDocumentFragment();
-    for (let i = 0; i < PICTURES_COUNT; ++i) {
+    for (var i = 0; i < PICTURES_COUNT; ++i) {
         fragment.appendChild(renderElement(pictures[i]));
     }
     picturesContainer.appendChild(fragment);
-}
+};
 
-function showBigPicture(picture) {
+var showBigPicture = function(picture) {
     var commentsContainer = bigPicture.querySelector('.social__comments');
     var commentTemplate = bigPicture.querySelector('.social__comment');
-
-    //bigPicture.classList.remove('hidden');
     bigPicture.querySelector('.big-picture__img img').src = picture.url;
     bigPicture.querySelector('.likes-count').textContent = picture.likes;
     bigPicture.querySelector('.comments-count').textContent = picture.comments.length;
 
     commentsContainer.innerHTML = '';
     var commentsFragment = document.createDocumentFragment();
-    for (let i = 0; i < picture.comments.length; ++i) {
+    for (var i = 0; i < picture.comments.length; i++) {
         commentTemplate.querySelector('.social__picture').src = 'img/avatar-' + getRandomNumber(1, AVATARS_COUNT) + '.svg';
         commentTemplate.querySelector('.social__text').textContent = picture.comments[i];
         commentsFragment.appendChild(commentTemplate.cloneNode(true));
@@ -114,7 +112,7 @@ function showBigPicture(picture) {
     bigPicture.querySelector('.social__caption').textContent = picture.description;
     bigPicture.querySelector('.social__comment-count').classList.add('visually-hidden');
     bigPicture.querySelector('.social__loadmore').classList.add('visually-hidden');
-}
+};
 
 renderPictures();
-showBigPicture(pictures[0]);
+
