@@ -62,8 +62,6 @@ document.addEventListener('keydown', function(evt) {
 });
 
 // IMG FILTERS
-imgUpload.classList.remove('hidden');
-
 var scaleLine = imgUpload.querySelector('.scale__line');
 var scaleLevel = imgUpload.querySelector('.scale__level');
 var scalePin = imgUpload.querySelector('.scale__pin');
