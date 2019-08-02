@@ -1,38 +1,9 @@
 'use strict';
 
-var uploadFile = document.querySelector('#upload-file');
-var uploadCancel = document.querySelector('#upload-cancel');
-var imgUpload = document.querySelector('.img-upload__overlay');
+// BIG PICTURE
 var imgContainer = document.querySelector('.pictures');
 var bigPictureCloseBtn = bigPicture.querySelector('.big-picture__cancel');
 
-// UPLOAD
-//imgUpload.classList.remove('hidden');
-
-var closeImgUpload = function() {
-    imgUpload.classList.add('hidden');
-    clearFileInputField('upload-file');    
-};
-
-var clearFileInputField = function(Id) {
-    document.getElementById(Id).innerHTML = document.getElementById(Id).innerHTML;
-};
-
-uploadFile.addEventListener('change', function () {
-    imgUpload.classList.remove('hidden');
-});
-
-uploadCancel.addEventListener('click', function () {
-    closeImgUpload();
-});
-
-document.addEventListener('keydown', function(evt) {
-    if (evt.key === 'Escape') {
-        closeImgUpload();
-    }
-});
-
-// BIG PICTURE
 var closeBigPicture = function() {
     bigPicture.classList.add('hidden');
 };
@@ -62,6 +33,100 @@ document.addEventListener('keydown', function(evt) {
     }
 });
 
+// UPLOAD
+var uploadFile = document.querySelector('#upload-file');
+var uploadCancel = document.querySelector('#upload-cancel');
+var imgUpload = document.querySelector('.img-upload__overlay');
 
+var closeImgUpload = function() {
+    imgUpload.classList.add('hidden');
+    clearFileInputField('upload-file');    
+};
 
+var clearFileInputField = function(Id) {
+    document.getElementById(Id).innerHTML = document.getElementById(Id).innerHTML;
+};
 
+uploadFile.addEventListener('change', function () {
+    imgUpload.classList.remove('hidden');
+});
+
+uploadCancel.addEventListener('click', function () {
+    closeImgUpload();
+});
+
+document.addEventListener('keydown', function(evt) {
+    if (evt.key === 'Escape') {
+        closeImgUpload();
+    }
+});
+
+// IMG FILTERS
+imgUpload.classList.remove('hidden');
+
+var scaleLine = imgUpload.querySelector('.scale__line');
+var scaleLevel = imgUpload.querySelector('.scale__level');
+var scalePin = imgUpload.querySelector('.scale__pin');
+var scaleValue = imgUpload.querySelector('.scale__value');
+
+var getSaturationLevel = function() {
+    var SCALE_LENGTH = 450;
+    var scalePosition = scalePin.offsetLeft;
+    var saturationLevel = scalePosition / SCALE_LENGTH * 100;
+    scaleValue.value = saturationLevel;
+
+    return saturationLevel;
+};
+
+scalePin.addEventListener('mouseup', getSaturationLevel);
+
+var effects = Array.from(imgUpload.querySelectorAll('.effects__item'));
+effects.forEach(function(elem) {
+    elem.addEventListener('click', function() {
+        scaleValue.value = 0;
+    });
+});
+
+/*
+var effectsSet = imgUpload.querySelector('.effects__list');
+effectsSet.addEventListener('click', function(evt) {
+    var target = evt.target;
+    if (target.tagName === 'li') {
+        alert('target');
+        
+    }
+});
+*/
+
+// VALIDATION
+var MAX_HASHTAGS = 5;
+
+var validateHashtags = function (arr) {
+    var arrLowerCase = [];
+    for (var i = 0; i < arr.length; i++) {
+        arrLowerCase[i] = arr[i].toLowerCase();
+    }
+    userHashtags.setCustomValidity('');
+    if (arr.length > MAX_HASHTAGS) {
+        userHashtags.setCustomValidity('Maximum of hashtags is: ' + MAX_HASHTAGS);
+    }
+    if (!checkUniqueValues(arrLowerCase)) {
+        userHashtags.setCustomValidity('Same hashtag cannot be used twice (tags are not case sensitive).');
+    }
+    for (var j = 0; j < arr.length; j++) {
+        if (arr[j] === '#') {
+            userHashtags.setCustomValidity('A hash tag cannot consist of just a lattice. Delete the extra character or add it.');            
+        } else if (arr[j].charAt(0) !== '#') {
+            userHashtags.setCustomValidity('Hashtag ' + arr[j] + ' must begin with "#".');
+        } else if (arr[j].slice(1).indexOf('#') !== -1) {
+            userHashtags.setCustomValidity('Hashtags ' + arr[j] + ' must be separated by a space.');
+        } else if (arr[j].length > 20) {
+            userHashtags.setCustomValidity('The maximum length of one hashtag is 20 characters, including "#". Shorten your hashtag ' + arr[j] + '.');
+        }
+    }
+};
+  
+userHashtags.addEventListener('input', function () {
+    var hashtagsArr = userHashtags.value.split(' ');
+    validateHashtags(hashtagsArr);
+});
