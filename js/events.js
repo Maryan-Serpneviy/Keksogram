@@ -16,11 +16,13 @@ var openBigPicture = function(evt) {
             showBigPicture(pictures[targetNum]);
             bigPicture.classList.remove('hidden');
         }
-    }    
+    }   
+    document.addEventListener('keydown', onBigPictureEscPress); 
 };
 
 var closeBigPicture = function() {
     bigPicture.classList.add('hidden');
+    document.removeEventListener('keydown', onBigPictureEscPress);
 };
 
 var onBigPictureEscPress = function(evt) {
@@ -33,8 +35,6 @@ imgContainer.addEventListener('click', openBigPicture);
 
 bigPictureCloseBtn.addEventListener('click', closeBigPicture);
 
-document.addEventListener('keydown', onBigPictureEscPress);
-
 // UPLOAD
 var uploadFile = document.querySelector('#upload-file');
 var uploadCancel = document.querySelector('#upload-cancel');
@@ -42,11 +42,13 @@ var imgUpload = document.querySelector('.img-upload__overlay');
 
 var openFilters = function() {
     imgUpload.classList.remove('hidden');
+    document.addEventListener('keydown', onFiltersEscPress);
 };
 
 var closeFilters = function() {
     imgUpload.classList.add('hidden');
-    clearFileInputField('upload-file');    
+    clearFileInputField('upload-file');  
+    document.removeEventListener('keydown', onFiltersEscPress);
 };
 
 var onFiltersEscPress = function(evt) {
@@ -62,8 +64,6 @@ var clearFileInputField = function(Id) {
 uploadFile.addEventListener('change', openFilters);
 
 uploadCancel.addEventListener('click', closeFilters);
-
-document.addEventListener('keydown', onFiltersEscPress);
 
 // IMG FILTERS
 var scaleLine = imgUpload.querySelector('.scale__line');
