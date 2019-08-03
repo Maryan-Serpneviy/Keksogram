@@ -94,7 +94,7 @@ var MAX_HASHTAGS = 5;
 var MAX_HASHTAG_LENGTH = 20;
 var userHashtags = document.querySelector('.text__hashtags');
 
-var validateHashtags = function (arr) {
+var validateHashtags = function(arr) {
     var arrLowerCase = [];
     for (var i = 0; i < arr.length; i++) {
         arrLowerCase[i] = arr[i].toLowerCase();
@@ -108,7 +108,7 @@ var validateHashtags = function (arr) {
     }
     for (var j = 0; j < arr.length; j++) {
         if (arr[j] === '#') {
-            userHashtags.setCustomValidity('A hash tag cannot consist of just a lattice. Delete the extra character or add it.');            
+            userHashtags.setCustomValidity('Hashtag cannot consist of just a lattice. Delete the extra character or add it.');            
         } else if (arr[j].charAt(0) !== '#') {
             userHashtags.setCustomValidity('Hashtag ' + arr[j] + ' must begin with "#".');
         } else if (arr[j].slice(1).indexOf('#') !== -1) {
