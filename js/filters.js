@@ -11,9 +11,7 @@
         var SCALE_LENGTH = 450;
         var scalePosition = scalePin.offsetLeft;
         var saturation = Math.round(scalePosition / SCALE_LENGTH * 100);
-        scaleValue.value = saturation;
-        //console.log(scaleValue.value);
-
+        scaleValue.value = saturation; // set effect saturation into input field
         return saturation;
     };
 
@@ -32,46 +30,30 @@
         heat: 0.05
     };
 
-    var changeFilter = function(effect, saturation) {
-        var effectSaturation = '';
-        if (effect === 'chrome') {
-            effectSaturation = 'grayscale(' + saturation() * FILTERS_COEF.chrome + ')';
-        } else if (effect === 'sepia') {
-            effectSaturation = 'sepia(' + saturation() * FILTERS_COEF.sepia + ')';
-        } else if (effect === 'marvin') {
-            effectSaturation = 'invert(' + saturation() * FILTERS_COEF.marvin + '%)';
-        } else if (effect === 'phobos') {
-            effectSaturation = 'blur(' + saturation() * FILTERS_COEF.phobos + 'px)';
-        } else if (effect === 'heat') {
-            effectSaturation = 'brightness(' + saturation() * FILTERS_COEF.heat + ')';
-        }
-        return effectSaturation;      
-    };
-
-    window.setFilterValue = function(effect, saturation) {
-        if (effect === 'gr') {
+    var setEffectSaturation = function(effect, saturation) {
+        if (effect === 'chrome' || effect === 'gr') {
             window.imgUploadPreview.style.filter = 'grayscale(' + saturation() * FILTERS_COEF.chrome + ')';
-        } else if (effect === 'se') {
+        } else if (effect === 'sepia' || effect === 'se') {
             window.imgUploadPreview.style.filter = 'sepia(' + saturation() * FILTERS_COEF.sepia + ')';
-        } else if (effect === 'in') {
+        } else if (effect === 'marvin' || effect === 'in') {
             window.imgUploadPreview.style.filter = 'invert(' + (saturation() * FILTERS_COEF.marvin) + '%)';
-        } else if (effect === 'bl') {
+        } else if (effect === 'phobos' || effect === 'bl') {
             window.imgUploadPreview.style.filter = 'blur(' + saturation() * FILTERS_COEF.phobos + 'px)';
-        } else if (effect === 'br') {
+        } else if (effect === 'heat' || effect === 'br') {
             window.imgUploadPreview.style.filter = 'brightness(' + saturation() * FILTERS_COEF.heat + ')';
-        }    
+        } else {
+            window.imgUploadPreview.style.filter = 'none';
+        }
     };
 
     window.dynamicSaturation = function() {
         var effectName = imgUploadPreview.style.filter.substr(0, 2);
-        setFilterValue(effectName, getSaturation);
+        setEffectSaturation(effectName, getSaturation);
     };
 
     var onEffectChange = function(evt) {
-        var effect = evt.target.value;
-        scaleValue.value = 0;
-        var filter = changeFilter(effect, window.getSaturation);
-        window.imgUploadPreview.style.filter = filter;
+        var effectName = evt.target.value;
+        setEffectSaturation(effectName, getSaturation);
     };
 
     scaleLine.addEventListener('click', dynamicSaturation);

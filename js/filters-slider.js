@@ -42,6 +42,7 @@
             upEvt.preventDefault();
             scalePin.style.left = pinPosition;
             scaleLevel.style.width = pinPosition;
+            window.scaleValue.value = getSaturation();
             document.removeEventListener('mousemove', onMouseMove);
             document.removeEventListener('mouseup', onMouseUp);
         };
