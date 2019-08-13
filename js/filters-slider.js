@@ -35,8 +35,7 @@
             window.pinPosition = pinPosition;
             
             // dynamic change of effect saturation
-            var effectName = imgUploadPreview.style.filter.substr(0, 2);
-            window.setFilterValue(effectName, getSaturation);
+            dynamicSaturation();
         };
 
         var onMouseUp = function(upEvt) {

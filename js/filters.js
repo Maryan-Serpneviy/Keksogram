@@ -17,9 +17,6 @@
         return saturation;
     };
 
-    scalePin.addEventListener('mouseup', onEffectChange);
-    scaleLine.addEventListener('click', onEffectChange);
-
     window.imgUploadPreview = imgUpload.querySelector('.img-upload__preview img');
     var effectsList = imgUpload.querySelector('.effects__list');
 
@@ -38,22 +35,20 @@
     var changeFilter = function(effect, saturation) {
         var effectSaturation = '';
         if (effect === 'chrome') {
-            effectSaturation = 'grayscale(' + saturation() + ')';
+            effectSaturation = 'grayscale(' + saturation() * FILTERS_COEF.chrome + ')';
         } else if (effect === 'sepia') {
-            effectSaturation = 'sepia(' + saturation() + ')';
+            effectSaturation = 'sepia(' + saturation() * FILTERS_COEF.sepia + ')';
         } else if (effect === 'marvin') {
-            effectSaturation = 'invert(' + (saturation() * FILTERS_COEF.marvin) + '%)';
+            effectSaturation = 'invert(' + saturation() * FILTERS_COEF.marvin + '%)';
         } else if (effect === 'phobos') {
-            effectSaturation = 'blur(' + saturation() /* * EFFECTS_MAX.phobos)*/ + 'px)';
+            effectSaturation = 'blur(' + saturation() * FILTERS_COEF.phobos + 'px)';
         } else if (effect === 'heat') {
-            effectSaturation = 'brightness(' + saturation() /* * EFFECTS_MAX.heat)*/ + ')';
+            effectSaturation = 'brightness(' + saturation() * FILTERS_COEF.heat + ')';
         }
         return effectSaturation;      
     };
 
     window.setFilterValue = function(effect, saturation) {
-        this.console.log(effect);
-
         if (effect === 'gr') {
             window.imgUploadPreview.style.filter = 'grayscale(' + saturation() * FILTERS_COEF.chrome + ')';
         } else if (effect === 'se') {
@@ -67,6 +62,11 @@
         }    
     };
 
+    window.dynamicSaturation = function() {
+        var effectName = imgUploadPreview.style.filter.substr(0, 2);
+        setFilterValue(effectName, getSaturation);
+    };
+
     var onEffectChange = function(evt) {
         var effect = evt.target.value;
         scaleValue.value = 0;
@@ -74,5 +74,6 @@
         window.imgUploadPreview.style.filter = filter;
     };
 
+    scaleLine.addEventListener('click', dynamicSaturation);
     effectsList.addEventListener('change', onEffectChange);
 })();
