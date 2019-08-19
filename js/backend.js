@@ -50,7 +50,13 @@
             this.request(onLoad, onError, SAVE_URL, 'POST', data);
         },
         showErrorMessage: function(errorMessage) {
-            
+            var errorBlock = document.querySelector('.download-error');
+            errorBlock.style = 'visibility: visible';
+            document.querySelector('.download-error__message').textContent =  'Error! ' + errorMessage;
+            var errorClose = document.querySelector('.download-error__close')
+            errorClose.addEventListener('click', function() {
+                errorBlock.style = 'transform: scale(0); transition: all 0.3s ease';
+            });            
         }
     };
 })();
