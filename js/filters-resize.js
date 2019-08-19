@@ -7,14 +7,14 @@
     var imgSize = imgUpload.querySelector('.resize__control--value');
     
     var RESIZE_PARAMS = {
-        MIN: 50,
-        MAX: 110,
+        MIN: 30,
+        MAX: 100,
         STEP: 10,
-        DEFAULT: 100
+        DEFAULT: 80
     };
     imgSize.value = RESIZE_PARAMS.DEFAULT + '%';
 
-    var resizeImage = function (sign) {
+    var resizeImage = function(sign) {
         var resizeValue = imgSize.value;
         resizeValue = parseInt(resizeValue) - RESIZE_PARAMS.STEP * sign;
         if (resizeValue > RESIZE_PARAMS.MAX) {
@@ -27,6 +27,7 @@
         img.style.transform = 'scale(' + (parseInt(resizeValue) / 100) + ')';
         img.style.position = 'relative';
     };
+    resizeImage(1);
 
     imgReduce.addEventListener('click', function() {
         resizeImage(1);
