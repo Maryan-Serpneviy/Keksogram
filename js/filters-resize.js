@@ -10,7 +10,7 @@
         MIN: 30,
         MAX: 100,
         STEP: 10,
-        DEFAULT: 80
+        DEFAULT: 90
     };
     imgSize.value = RESIZE_PARAMS.DEFAULT + '%';
 
