@@ -633,7 +633,7 @@ main {
     width: 600px;
     height: 600px;
 
-    background-color: #ffffff;
+    background-color: transparent;
 }
 
 .img-upload__preview img {

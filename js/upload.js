@@ -1,14 +1,17 @@
 'use strict';
 
 (function() {
+    window.imgUpload = document.querySelector('.img-upload__overlay');
     var uploadFile = document.querySelector('#upload-file');
     var uploadCancel = document.querySelector('#upload-cancel');
-    window.imgUpload = document.querySelector('.img-upload__overlay');
     var uploadPreview = document.querySelector('.img-upload__preview');
+    var imgSize = imgUpload.querySelector('.resize__control--value');
 
     var openFilters = function() {
         imgUpload.classList.remove('hidden');
         document.addEventListener('keydown', onFiltersEscPress);
+        imgSize.value = RESIZE_PARAMS.DEFAULT + '%';
+        resizeImage(1);
     };
 
     var closeFilters = function() {

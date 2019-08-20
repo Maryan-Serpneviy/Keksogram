@@ -6,15 +6,15 @@
     var imgEnlarge = imgUpload.querySelector('.resize__control--plus');
     var imgSize = imgUpload.querySelector('.resize__control--value');
     
-    var RESIZE_PARAMS = {
+    window.RESIZE_PARAMS = {
         MIN: 30,
         MAX: 100,
         STEP: 10,
-        DEFAULT: 90
+        DEFAULT: 80
     };
     imgSize.value = RESIZE_PARAMS.DEFAULT + '%';
 
-    var resizeImage = function(sign) {
+    window.resizeImage = function(sign) {
         var resizeValue = imgSize.value;
         resizeValue = parseInt(resizeValue) - RESIZE_PARAMS.STEP * sign;
         if (resizeValue > RESIZE_PARAMS.MAX) {
