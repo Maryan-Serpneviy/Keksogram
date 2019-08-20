@@ -1,8 +1,6 @@
 'use strict';
 
 (function() {
-    window.imgUpload.classList.remove('hidden');
-
     var getPinPosition = function(coord, shift) {
         var SCALE_OVERFLOW = 45;
         var SCALE_LIMITS = {

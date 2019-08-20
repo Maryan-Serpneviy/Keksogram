@@ -15,7 +15,7 @@
         return saturation;
     };
 
-    window.imgUploadPreview = imgUpload.querySelector('.img-upload__preview img');
+    window.imgUploadPreview = imgUpload.querySelector('.img-upload__preview');
     var effectsList = imgUpload.querySelector('.effects__list');
 
     // original photo (no effect) is selected by default
