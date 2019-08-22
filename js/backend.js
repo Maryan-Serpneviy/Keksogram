@@ -1,7 +1,7 @@
 'use strict';
 
 (function() {
-    var LOAD_URL = 'https://js.dump.academy/kekstagram/dat';
+    var LOAD_URL = 'https://js.dump.academy/kekstagram/data';
     var SAVE_URL = 'https://js.dump.academy/kekstagram';
 
     window.backend = {
@@ -32,10 +32,10 @@
                 }
             });
             xhr.addEventListener('error', function() {
-                this.showErrorMessage('Connection error');
+                this.errorHandler('Connection error');
             });
             xhr.addEventListener('timeout', function() {
-                this.showErrorMessage('Request did not manage to fulfill in' + (xhr.timeout / 1000) + ' s');
+                this.errorHandler('Request did not manage to fulfill in' + (xhr.timeout / 1000) + ' s');
             });
 
             xhr.timeout = 10000;
