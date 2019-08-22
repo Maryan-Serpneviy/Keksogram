@@ -1,7 +1,7 @@
 'use strict';
 
 (function() {
-    var LOAD_URL = 'https://js.dump.academy/kekstagram/data';
+    var LOAD_URL = 'https://js.dump.academy/kekstagram/dat';
     var SAVE_URL = 'https://js.dump.academy/kekstagram';
 
     window.backend = {
@@ -49,7 +49,7 @@
         save: function(data, onLoad, onError) {
             this.request(onLoad, onError, SAVE_URL, 'POST', data);
         },
-        showErrorMessage: function(errorMessage) {
+        errorHandler: function(errorMessage) {
             var errorBlock = document.querySelector('.download-error');
             errorBlock.style = 'visibility: visible';
             document.querySelector('.download-error__message').textContent =  'Error! ' + errorMessage;

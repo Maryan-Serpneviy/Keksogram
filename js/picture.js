@@ -21,14 +21,5 @@
         }
         picturesContainer.appendChild(fragment);
     };
-    window.backend.load(renderPictures, window.backend.showErrorMessage);
-    /*
-    var form = userDialog.querySelector('.setup-wizard-form');
-
-    form.addEventListener('submit', function(evt) {
-        window.backend.save(new FormData(form), downloadSimilars, window.backend.showErrorMessage);
-        userDialog.classList.add('hidden');
-        evt.preventDefault();
-    });
-    */
+    window.backend.load(renderPictures, window.backend.errorHandler);
 })();
