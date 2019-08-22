@@ -13,6 +13,8 @@
     };
 
     var renderPictures = function(remoteData) {
+        window.picturesData = remoteData;
+        window.utils.shuffle(remoteData);
         var fragment = document.createDocumentFragment();
         for (var i = 0; i < remoteData.length; i++) {
             fragment.appendChild(renderElement(remoteData[i]));
@@ -20,4 +22,13 @@
         picturesContainer.appendChild(fragment);
     };
     window.backend.load(renderPictures, window.backend.showErrorMessage);
+    /*
+    var form = userDialog.querySelector('.setup-wizard-form');
+
+    form.addEventListener('submit', function(evt) {
+        window.backend.save(new FormData(form), downloadSimilars, window.backend.showErrorMessage);
+        userDialog.classList.add('hidden');
+        evt.preventDefault();
+    });
+    */
 })();
