@@ -32,10 +32,10 @@
                 }
             });
             xhr.addEventListener('error', function() {
-                this.showErrorMessage('Connection error');
+                this.errorHandler('Connection error');
             });
             xhr.addEventListener('timeout', function() {
-                this.showErrorMessage('Request did not manage to fulfill in' + (xhr.timeout / 1000) + ' s');
+                this.errorHandler('Request did not manage to fulfill in' + (xhr.timeout / 1000) + ' s');
             });
 
             xhr.timeout = 10000;
@@ -49,7 +49,7 @@
         save: function(data, onLoad, onError) {
             this.request(onLoad, onError, SAVE_URL, 'POST', data);
         },
-        showErrorMessage: function(errorMessage) {
+        errorHandler: function(errorMessage) {
             var errorBlock = document.querySelector('.download-error');
             errorBlock.style = 'visibility: visible';
             document.querySelector('.download-error__message').textContent =  'Error! ' + errorMessage;

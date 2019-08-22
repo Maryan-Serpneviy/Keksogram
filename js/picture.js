@@ -12,23 +12,14 @@
         return thumbElement;
     };
 
-    var renderPictures = function() {
+    var renderPictures = function(remoteData) {
+        window.picturesData = remoteData;
+        window.utils.shuffle(remoteData);
         var fragment = document.createDocumentFragment();
-        for (var i = 0; i < PICTURES_COUNT; i++) {
-            fragment.appendChild(renderElement(pictures[i]));
+        for (var i = 0; i < remoteData.length; i++) {
+            fragment.appendChild(renderElement(remoteData[i]));
         }
         picturesContainer.appendChild(fragment);
     };
-
-    var PICTURES_COUNT = 25;
-
-    var generatePicturesPreview = function(picturesCount) {
-        var picturesItems = [];
-        for (var i = 0; i < picturesCount; i++) {
-            picturesItems[i] = generatePictureData(i);
-        }
-        return picturesItems;
-    };
-    window.pictures = generatePicturesPreview(PICTURES_COUNT);
-    renderPictures();
+    window.backend.load(renderPictures, window.backend.errorHandler);
 })();
