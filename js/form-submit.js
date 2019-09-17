@@ -1,16 +1,16 @@
 'use strict';
 
 (function() {
-    var imgUpload = document.querySelector('.img-upload');
-    var form = imgUpload.querySelector('.img-upload__form');
+    const imgUpload = document.querySelector('.img-upload');
+    const form = imgUpload.querySelector('.img-upload__form');
     
-    var successHandler = function() {
+    const successHandler = () => {
         imgUpload.classList.add('hidden');
         form.reset();
     };
 
-    form.addEventListener('submit', function(evt) {
+    form.addEventListener ('submit', evt => {
         evt.preventDefault();
-        window.backend.save(new FormData(form), successHandler, window.backend.errorHandler);
+        window.backend.save (new FormData(form), successHandler, window.backend.errorHandler);
     });
 });

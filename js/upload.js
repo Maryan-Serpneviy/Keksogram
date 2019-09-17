@@ -1,50 +1,49 @@
 'use strict';
 
 (function() {
-    window.imgUpload = document.querySelector('.img-upload__overlay');
-    var uploadFile = document.querySelector('#upload-file');
-    var uploadCancel = document.querySelector('#upload-cancel');
-    var uploadPreview = document.querySelector('.img-upload__preview');
-    var imgSize = imgUpload.querySelector('.resize__control--value');
+    const imgUpload = document.querySelector('.img-upload__overlay');
+    const uploadFile = document.querySelector('#upload-file');
+    const uploadCancel = document.querySelector('#upload-cancel');
+    const uploadPreview = document.querySelector('.img-upload__preview');
+    const imgSize = imgUpload.querySelector('.resize__control--value');
 
-    var openFilters = function() {
+    const openFilters = () => {
         imgUpload.classList.remove('hidden');
-        document.addEventListener('keydown', onFiltersEscPress);
-        imgSize.value = RESIZE_PARAMS.DEFAULT + '%';
+        document.addEventListener ('keydown', onFiltersEscPress);
+        imgSize.value = `${RESIZE_PARAMS.DEFAULT}%`;
         resizeImage(1);
     };
 
-    var closeFilters = function() {
+    const closeFilters = () => {
         imgUpload.classList.add('hidden');
         clearFileInputField('#upload-file');  
         document.removeEventListener('keydown', onFiltersEscPress);
     };
 
-    var onFiltersEscPress = function(evt) {
+    const onFiltersEscPress = evt => {
         if (evt.key === 'Escape') {
             closeFilters();
         }
     };
 
-    var onPhotoUpload = function() {
-        var file = uploadFile.files[0];
-        var reader = new FileReader();
+    const onPhotoUpload = () => {
+        const file = uploadFile.files[0];
+        const reader = new FileReader();
 
-        reader.onload = (function(FILE) {
-            return function(evt) {
-                uploadPreview.innerHTML = ['<img class="img__preview" src="', evt.target.result,
-                '" title="', escape(FILE.name), '"/>'].join('');
+        reader.onload = (FILE => {
+            return evt => {
+                uploadPreview.innerHTML = `<img class="img__preview" src="${evt.target.result}" title="${escape(FILE.name)}"/>`;
             };
         })(file);
         reader.readAsDataURL(file);
     };
 
-    var clearFileInputField = function(Id) {
+    const clearFileInputField = Id => {
         document.querySelector(Id).value = '';
     };
-    uploadFile.addEventListener('change', function() {
+    uploadFile.addEventListener ('change', () => {
         onPhotoUpload();
         openFilters();
     });
-    uploadCancel.addEventListener('click', closeFilters);
+    uploadCancel.addEventListener ('click', closeFilters);
 })();
