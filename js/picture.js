@@ -1,25 +1,23 @@
-import utils from './utils.js';
-import backend from './backend.js';
+import Util from './utils.js';
+import AJAX from './ajax.js';
+import render from './render.js';
 
-const pictureTemplate = document.querySelector('#picture').content;
 const picturesContainer = document.querySelector('.pictures');
+const imgFilters = document.querySelector('.img-filters');
 
-const renderElement = data => {
-    const thumbElement = pictureTemplate.querySelector('.picture__link').cloneNode(true);
-    thumbElement.querySelector('.picture__img').src = data.url;
-    thumbElement.querySelector('.picture__stat--likes').textContent = data.likes;
-    thumbElement.querySelector('.picture__stat--comments').textContent = data.comments.length;
-    return thumbElement;
-};
+let picturesData = [];
 
 const renderPictures = remoteData => {
-    window.picturesData = remoteData;    
-    utils.shuffle (remoteData);
+    picturesData = remoteData;   
+    Util.shuffle (remoteData);
     const fragment = document.createDocumentFragment();
-    for (let i = 0; i < remoteData.length; i++) {
-        fragment.appendChild(renderElement(remoteData[i]));
-    }
+    remoteData.forEach(element => {
+        fragment.appendChild(render(element));
+    });
     picturesContainer.appendChild(fragment);
+    imgFilters.classList.remove('img-filters--inactive');
 };
 
-backend.load(renderPictures, backend.errorHandler);
+AJAX.load(renderPictures, AJAX.errorHandler);
+
+export { picturesData };
