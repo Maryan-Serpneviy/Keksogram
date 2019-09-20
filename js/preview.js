@@ -1,5 +1,4 @@
 import { picturesData } from './picture.js';
-console.log(picturesData);
 const bigPicture = document.querySelector('.big-picture');
 
 const showBigPicture = picture => {
