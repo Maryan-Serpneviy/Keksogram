@@ -1,6 +1,7 @@
 importModule('constants');
 importModule('utils');
 importModule('ajax');
+importModule('render');
 importModule('picture');
 importModule('preview');
 importModule('upload');
@@ -9,3 +10,4 @@ importModule('form');
 importModule('filters');
 importModule('filters-slider');
 importModule('filters-resize');
+importModule('sort');
