@@ -1,4 +1,5 @@
-
+import { picturesData } from './picture.js';
+console.log(picturesData);
 const bigPicture = document.querySelector('.big-picture');
 
 const showBigPicture = picture => {
@@ -11,11 +12,11 @@ const showBigPicture = picture => {
     commentsContainer.innerHTML = '';
     
     const commentsFragment = document.createDocumentFragment();
-    for (let i = 0; i < picture.comments.length; i++) {
-        comment.querySelector('.social__picture').src = picture.comments[i].avatar;
-        comment.querySelector('.social__text').textContent = picture.comments[i].message;
+    picture.comments.forEach(element => {
+        comment.querySelector('.social__picture').src = element.avatar;
+        comment.querySelector('.social__text').textContent = element.message;
         commentsFragment.appendChild(comment.cloneNode(true));
-    }
+    });
 
     commentsContainer.appendChild(commentsFragment);
     bigPicture.querySelector('.social__caption').textContent = picture.description;
@@ -30,11 +31,11 @@ const bigPictureCloseBtn = bigPicture.querySelector('.big-picture__cancel');
 const openBigPicture = evt => {
     const target = evt.target;
     if (target.className === 'picture__img') {           
-        for (let i = 0; i < picturesData.length; i++) {
-            if (target.src.includes(picturesData[i].url)) {
-                showBigPicture (picturesData[i]);
+        picturesData.forEach(element => {
+            if (target.src.includes(element.url)) {
+                showBigPicture (element);
             }
-        }
+        })
         bigPicture.classList.remove('hidden');
     }
     document.addEventListener ('keydown', onBigPictureEscPress); 
@@ -51,5 +52,13 @@ const onBigPictureEscPress = evt => {
     }
 };
 
+const onDocumentClick = evt => {
+    const target = evt.target;
+    if (target.classList.contains('big-picture')) {
+        closeBigPicture();
+    }
+}
+
 imgContainer.addEventListener ('click', openBigPicture);
 bigPictureCloseBtn.addEventListener ('click', closeBigPicture);
+document.addEventListener ('click', onDocumentClick)
