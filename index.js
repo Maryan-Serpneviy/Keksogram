@@ -1,0 +1,11 @@
+importModule('constants');
+importModule('utils');
+importModule('ajax');
+importModule('picture');
+importModule('preview');
+importModule('upload');
+importModule('validation');
+importModule('form');
+importModule('filters');
+importModule('filters-slider');
+importModule('filters-resize');

@@ -7,18 +7,29 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <title>Keksogram</title>
+    <script>
+        const importModule = module => {
+            const scriptElem = document.createElement('script');
+            scriptElem.type = 'module';
+            scriptElem.src = `./js/${module}.js`;
+            document.head.appendChild(scriptElem);
+        };
+    </script>
     <!-- Modules -->
+    <!--
     <script type="module" src="js/constants.js"></script>
     <script type="module" src="js/utils.js"></script>
-    <script type="module" src="js/backend.js"></script>
+    <script type="module" src="js/ajax.js"></script>
     <script type="module" src="js/picture.js"></script>
     <script type="module" src="js/preview.js"></script>
     <script type="module" src="js/upload.js"></script>
-    <script type="module" src="js/form-submit.js"></script>
     <script type="module" src="js/validation.js"></script>
+    <script type="module" src="js/form.js"></script>
     <script type="module" src="js/filters.js"></script>
     <script type="module" src="js/filters-slider.js"></script>
     <script type="module" src="js/filters-resize.js"></script>  
+    -->
+    <script src="index.js"></script>
 </head>
 
 <body>
@@ -128,7 +139,7 @@
                                 </fieldset>
 
                                 <fieldset class="img-upload__text text">
-                                    <input class="text__hashtags" name="hashtags" placeholder="#hashtag" minlength="5" maxlength="25" required>
+                                    <input class="text__hashtags" name="hashtags" placeholder="#hashtag" minlength="5" maxlength="60" required>
                                     <textarea class="text__description" name="description" placeholder="Your comment..." minlength="5" maxlength="150" required></textarea>
                                 </fieldset>
 
