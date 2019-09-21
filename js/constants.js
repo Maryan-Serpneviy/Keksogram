@@ -14,5 +14,19 @@ export default {
     COLOR: {
         SUCCESS: '#28a745',
         DANGER: '#dc3545'
-    }
+    },
+    FILTERS_COEF: {
+        CHROME: 0.01,
+        SEPIA: 0.01,
+        MARVIN: 1,
+        PHOBOS: 0.15,
+        HEAT: 0.05
+    },
+    RESIZE_PARAMS: {
+        MIN: 30,
+        MAX: 100,
+        STEP: 10,
+        DEFAULT: 80
+    },
+    NEW_AMOUNT: 12
 }

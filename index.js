@@ -8,6 +8,6 @@ importModule('upload');
 importModule('validation');
 importModule('form');
 importModule('filters');
-importModule('filters-slider');
-importModule('filters-resize');
+importModule('slider');
+importModule('resize');
 importModule('sort');
