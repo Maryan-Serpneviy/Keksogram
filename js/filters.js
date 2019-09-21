@@ -1,3 +1,5 @@
+import Const from './constants.js';
+
 const imgUpload = document.querySelector('.img-upload__overlay');
 const scaleValue = imgUpload.querySelector('.scale__value');
 const scaleLine = imgUpload.querySelector('.scale__line');
@@ -18,25 +20,17 @@ const effectsList = imgUpload.querySelector('.effects__list');
 // this is needed for 'change' event to work properly
 imgUpload.querySelector('.effects__radio').checked = true;
 
-const FILTERS_COEF = {
-    chrome: 0.01,
-    sepia: 0.01,
-    marvin: 1,
-    phobos: 0.15,
-    heat: 0.05
-};
-
 const setEffectSaturation = (effect, saturation) => {
     if (effect === 'chrome' || effect === 'gr') {
-        imgUploadPreview.style.filter = `grayscale(${saturation() * FILTERS_COEF.chrome})`;
+        imgUploadPreview.style.filter = `grayscale(${saturation() * Const.FILTERS_COEF.CHROME})`;
     } else if (effect === 'sepia' || effect === 'se') {
-        imgUploadPreview.style.filter = `sepia(${saturation() * FILTERS_COEF.sepia})`;
+        imgUploadPreview.style.filter = `sepia(${saturation() * Const.FILTERS_COEF.SEPIA})`;
     } else if (effect === 'marvin' || effect === 'in') {
-        imgUploadPreview.style.filter = `invert(${saturation() * FILTERS_COEF.marvin}%)`;
+        imgUploadPreview.style.filter = `invert(${saturation() * Const.FILTERS_COEF.MARVIN}%)`;
     } else if (effect === 'phobos' || effect === 'bl') {
-        imgUploadPreview.style.filter = `blur(${saturation() * FILTERS_COEF.phobos}px)`;
+        imgUploadPreview.style.filter = `blur(${saturation() * Const.FILTERS_COEF.PHOBOS}px)`;
     } else if (effect === 'heat' || effect === 'br') {
-        imgUploadPreview.style.filter = `brightness(${saturation() * FILTERS_COEF.heat})`;
+        imgUploadPreview.style.filter = `brightness(${saturation() * Const.FILTERS_COEF.HEAT})`;
     } else {
         imgUploadPreview.style.filter = `none`;
     }
