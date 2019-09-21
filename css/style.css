@@ -33,6 +33,9 @@ body {
 
     background-color: #232321;
     overflow-x: hidden;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
 }
 
 main {
@@ -194,10 +197,15 @@ main {
     border: none;
 }
 
+.img-filters__button:hover {
+    color: #eee;
+    transition: all 0.3s ease;
+}
+
 .img-filters__button:active,
 .img-filters__button--active {
-    color: #ff4e4e;
-
+    color: #ff4e4e !important;
+    outline: none;
     background-color: #ffffff;
     border-radius: 2px;
 }
@@ -1032,7 +1040,6 @@ main {
 .likes-count::before {
     content: "";
     position: absolute;
-
     top: 3px;
     left: 5px;
 
@@ -1053,7 +1060,7 @@ main {
 
 .likes-count:active::before {
     opacity: 1;
-    background-position: 0 -120px;
+    background-position: 0 -117px;
 }
 
 .social__comments {
@@ -1061,7 +1068,7 @@ main {
     flex-basis: 100%;
 
     list-style: none;
-
+    
     margin: 0;
     padding: 0;
 }
@@ -1069,7 +1076,7 @@ main {
 .social__comment {
     padding-left: 15px;
     padding-right: 15px;
-    padding-bottom: 20px;
+    padding-top: 20px;
 
     display: -webkit-box;
     display: -ms-flexbox;
@@ -1146,7 +1153,7 @@ main {
 
 .social__footer-text {
     width: 100%;
-
+    padding: 0 10px;
     border: none;
 }
 
