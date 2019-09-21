@@ -1,50 +1,48 @@
-'use strict';
+import Const from './constants.js';
+import { resizeImage } from './resize.js';
 
-(function() {
-    window.imgUpload = document.querySelector('.img-upload__overlay');
-    var uploadFile = document.querySelector('#upload-file');
-    var uploadCancel = document.querySelector('#upload-cancel');
-    var uploadPreview = document.querySelector('.img-upload__preview');
-    var imgSize = imgUpload.querySelector('.resize__control--value');
+const imgUpload = document.querySelector('.img-upload__overlay');
+const uploadFile = document.querySelector('#upload-file');
+const uploadCancel = document.querySelector('#upload-cancel');
+const uploadPreview = document.querySelector('.img-upload__preview');
+const imgSize = imgUpload.querySelector('.resize__control--value');
 
-    var openFilters = function() {
-        imgUpload.classList.remove('hidden');
-        document.addEventListener('keydown', onFiltersEscPress);
-        imgSize.value = RESIZE_PARAMS.DEFAULT + '%';
-        resizeImage(1);
-    };
+const openFilters = () => {
+    imgUpload.classList.remove('hidden');
+    document.addEventListener ('keydown', onFiltersEscPress);
+    imgSize.value = `${Const.RESIZE_PARAMS.DEFAULT}%`;
+    resizeImage(1);
+};
 
-    var closeFilters = function() {
-        imgUpload.classList.add('hidden');
-        clearFileInputField('#upload-file');  
-        document.removeEventListener('keydown', onFiltersEscPress);
-    };
+const closeFilters = () => {
+    imgUpload.classList.add('hidden');
+    clearFileInputField('#upload-file');  
+    document.removeEventListener('keydown', onFiltersEscPress);
+};
 
-    var onFiltersEscPress = function(evt) {
-        if (evt.key === 'Escape') {
-            closeFilters();
-        }
-    };
+const onFiltersEscPress = evt => {
+    if (evt.key === 'Escape') {
+        closeFilters();
+    }
+};
 
-    var onPhotoUpload = function() {
-        var file = uploadFile.files[0];
-        var reader = new FileReader();
+const onPhotoUpload = () => {
+    const file = uploadFile.files[0];
+    const reader = new FileReader();
+    reader.onload = (FILE => {
+        return evt => {
+            uploadPreview.innerHTML = `<img class="img__preview" src="${evt.target.result}" title="${escape(FILE.name)}"/>`;
+        };
+    })(file);
+    reader.readAsDataURL(file);
+};
 
-        reader.onload = (function(FILE) {
-            return function(evt) {
-                uploadPreview.innerHTML = ['<img class="img__preview" src="', evt.target.result,
-                '" title="', escape(FILE.name), '"/>'].join('');
-            };
-        })(file);
-        reader.readAsDataURL(file);
-    };
+const clearFileInputField = Id => {
+    document.querySelector(Id).value = '';
+};
 
-    var clearFileInputField = function(Id) {
-        document.querySelector(Id).value = '';
-    };
-    uploadFile.addEventListener('change', function() {
-        onPhotoUpload();
-        openFilters();
-    });
-    uploadCancel.addEventListener('click', closeFilters);
-})();
+uploadFile.addEventListener ('change', () => {
+    onPhotoUpload();
+    openFilters();
+});
+uploadCancel.addEventListener ('click', closeFilters);

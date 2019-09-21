@@ -7,6 +7,31 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <title>Keksogram</title>
+    <script>
+        const importModule = module => {
+            const scriptElem = document.createElement('script');
+            scriptElem.type = 'module';
+            scriptElem.src = `./js/${module}.js`;
+            document.head.appendChild(scriptElem);
+        };
+    </script>
+    <!-- Modules -->
+    <!--
+    <script type="module" src="js/constants.js"></script>
+    <script type="module" src="js/utils.js"></script>
+    <script type="module" src="js/ajax.js"></script>
+    <script type="module" src="js/render.js"></script>
+    <script type="module" src="js/picture.js"></script>
+    <script type="module" src="js/preview.js"></script>
+    <script type="module" src="js/upload.js"></script>
+    <script type="module" src="js/validation.js"></script>
+    <script type="module" src="js/form.js"></script>
+    <script type="module" src="js/filters.js"></script>
+    <script type="module" src="js/slider.js"></script>
+    <script type="module" src="js/resize.js"></script>
+    <script type="module" src="js/sort.js"></script>
+    -->
+    <script src="index.js"></script>
 </head>
 
 <body>
@@ -116,7 +141,7 @@
                                 </fieldset>
 
                                 <fieldset class="img-upload__text text">
-                                    <input class="text__hashtags" name="hashtags" placeholder="#hashtag" minlength="5" maxlength="25" required>
+                                    <input class="text__hashtags" name="hashtags" placeholder="#hashtag" minlength="5" maxlength="60" required>
                                     <textarea class="text__description" name="description" placeholder="Your comment..." minlength="5" maxlength="150" required></textarea>
                                 </fieldset>
 
@@ -156,7 +181,7 @@
                     <button class="social__loadmore" type="button">Load more</button>
                     <div class="social__footer">
                         <img class="social__picture" src="img/avatar-6.svg" alt="Аватар комментатора фотографии" width="35" height="35">
-                        <input type="text" class="social__footer-text" placeholder="Ваш комментарий...">
+                        <input type="text" class="social__footer-text" placeholder="Add comment...">
                         <button type="button" class="social__footer-btn" name="button">Отправить</button>
                     </div>
                 </div>
@@ -212,17 +237,6 @@
             </div>
         </div>
     </template>
-    <script src="js/utils.js"></script>
-    <script src="js/backend.js"></script>
-    <script src="js/gallery.js"></script>
-    <script src="js/picture.js"></script>
-    <script src="js/preview.js"></script>
-    <script src="js/upload.js"></script>
-    <script src="js/form-submit.js"></script>
-    <script src="js/filters.js"></script>
-    <script src="js/filters-slider.js"></script>
-    <script src="js/filters-resize.js"></script>
-    <script src="js/validation.js"></script>
 </body>
 
 </html>
