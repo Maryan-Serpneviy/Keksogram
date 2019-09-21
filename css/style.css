@@ -717,7 +717,7 @@ main {
     left: 20px;
     z-index: 1;
 
-    height: 5px;
+    height: 7px;
 
     font-size: 0;
 
@@ -726,6 +726,9 @@ main {
     -webkit-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
+
+    cursor: pointer;
+    border-radius: 7px;
 }
 
 .scale__pin {
@@ -755,6 +758,7 @@ main {
     height: 100%;
 
     background-color: #ffe753;
+    border-radius: 7px;
 }
 
 
@@ -1096,14 +1100,21 @@ main {
 .social__loadmore {
     padding: 0;
     padding-left: 65px;
-    padding-bottom: 20px;
+    padding-top: 10px;
+    padding-bottom: 15px;
     position: relative;
 
     text-align: left;
     color: #3b77c0;
+    text-decoration: underline;
+    cursor: pointer;
 
     background: none;
     border: none;
+}
+
+.social__loadmore:hover {
+    text-decoration: none;
 }
 
 .social__loadmore--active::after,
