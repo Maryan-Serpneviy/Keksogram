@@ -1,4 +1,5 @@
-import { RESIZE_PARAMS, resizeImage } from './filters-resize.js';
+import Const from './constants.js';
+import { resizeImage } from './resize.js';
 
 const imgUpload = document.querySelector('.img-upload__overlay');
 const uploadFile = document.querySelector('#upload-file');
@@ -9,7 +10,7 @@ const imgSize = imgUpload.querySelector('.resize__control--value');
 const openFilters = () => {
     imgUpload.classList.remove('hidden');
     document.addEventListener ('keydown', onFiltersEscPress);
-    imgSize.value = `${RESIZE_PARAMS.DEFAULT}%`;
+    imgSize.value = `${Const.RESIZE_PARAMS.DEFAULT}%`;
     resizeImage(1);
 };
 
