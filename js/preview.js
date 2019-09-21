@@ -37,6 +37,14 @@ const openBigPicture = evt => {
         })
         bigPicture.classList.remove('hidden');
     }
+    const likes = document.querySelector('.likes-count');
+    let liked = false;
+    likes.addEventListener ('click', function() {
+        if (!liked) {
+            likes.textContent = parseInt(likes.textContent) + 1;
+            liked = true;
+        }
+    })
     document.addEventListener ('keydown', onBigPictureEscPress); 
 };
 
