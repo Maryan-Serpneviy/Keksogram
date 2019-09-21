@@ -1,4 +1,5 @@
 import { picturesData } from './picture.js';
+
 const bigPicture = document.querySelector('.big-picture');
 
 const showBigPicture = picture => {
@@ -26,6 +27,17 @@ const showBigPicture = picture => {
 // BIG PICTURE EVENTS
 const imgContainer = document.querySelector('.pictures');
 const bigPictureCloseBtn = bigPicture.querySelector('.big-picture__cancel');
+const likes = document.querySelector('.likes-count');
+
+const likePicture = () => {
+    let liked = null;
+    return () => {
+        if (!liked) {
+            likes.textContent = parseInt(likes.textContent) + 1;
+            liked = true;
+        }
+    }
+};
 
 const openBigPicture = evt => {
     const target = evt.target;
@@ -37,14 +49,6 @@ const openBigPicture = evt => {
         })
         bigPicture.classList.remove('hidden');
     }
-    const likes = document.querySelector('.likes-count');
-    let liked = false;
-    likes.addEventListener ('click', function() {
-        if (!liked) {
-            likes.textContent = parseInt(likes.textContent) + 1;
-            liked = true;
-        }
-    })
     document.addEventListener ('keydown', onBigPictureEscPress); 
 };
 
@@ -68,4 +72,5 @@ const onDocumentClick = evt => {
 
 imgContainer.addEventListener ('click', openBigPicture);
 bigPictureCloseBtn.addEventListener ('click', closeBigPicture);
-document.addEventListener ('click', onDocumentClick)
+document.addEventListener ('click', onDocumentClick);
+likes.addEventListener ('click', likePicture());
