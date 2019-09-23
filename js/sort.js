@@ -1,5 +1,4 @@
 import Const from './constants.js';
-import Util from './utils.js';
 import render from './render.js';
 import { picturesData } from './picture.js';
 
@@ -35,7 +34,7 @@ const switchButton = evt => {
         element.classList.remove('img-filters__button--active');
     });
     evt.target.classList.add('img-filters__button--active');
-}
+};
 
 const sortPopular = () => {
     removePictures();
@@ -44,9 +43,9 @@ const sortPopular = () => {
 
 const sortNew = () => {
     removePictures();
-    const filterNewArr = Util.getRandomUniqueArrayElements(picturesData, Const.NEW_AMOUNT);
+    const filterNewArr = picturesData.getRandomUniques(Const.NEW_AMOUNT);
     renderPictures(filterNewArr);
-}
+};
 
 const sortDiscussed = () => {
     removePictures();
