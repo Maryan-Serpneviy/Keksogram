@@ -1,3 +1,16 @@
+export default {
+    debounce: (() => {
+        let lastTimeout = null;
+        return (cb, s) => {
+            const ms = s * 1000;
+            clearTimeout(lastTimeout);
+            lastTimeout = setTimeout(() => {
+                cb()
+            }, ms)
+        };
+    })()
+};
+
 Array.prototype.shuffle = function() {
     for (let i = this.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
