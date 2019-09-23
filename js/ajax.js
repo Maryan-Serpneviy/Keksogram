@@ -36,7 +36,7 @@ export default {
             this.errorHandler(`Request did not manage to fulfill in ${xhr.timeout / 1000} s`);
         });
 
-        xhr.timeout = Const.TIMEOUT;
+        xhr.timeout = Const.TIMEOUT.XHR;
         xhr.open (method, url);
         xhr.send (data);
     },
