@@ -9,7 +9,6 @@ const commentTemplate = document.querySelector('#comment-template')
     .querySelector('.social__comment');
 const btnLoadMore = bigPicture.querySelector('.social__loadmore');
 const commentCount = bigPicture.querySelector('.social__comment-count .comments-count');
-//bigPicture.querySelector('.comments-count').textContent = picture.comments.length;
 
 let picturesData = new Array();
 let comments = new Array();
