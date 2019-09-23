@@ -30,6 +30,8 @@ body {
     line-height: 20px;
     color: #ffffff;
     text-transform: uppercase;
+    padding: 0;
+    margin: 0;
 
     background-color: #232321;
     overflow-x: hidden;
