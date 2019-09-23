@@ -28,5 +28,6 @@ export default {
         STEP: 10,
         DEFAULT: 80
     },
-    NEW_AMOUNT: 12
+    NEW_AMOUNT: 12,
+    LOAD_AMOUNT: 5
 }

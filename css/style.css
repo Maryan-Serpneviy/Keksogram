@@ -1091,17 +1091,20 @@ main {
     align-items: center;
 }
 
+.social__comment:last-child {
+    padding-bottom: 10px;
+}
+
 .social__comment-count {
     padding-top: 20px;
+    padding-bottom: 5px;
     padding-left: 65px;
-    padding-bottom: 20px;
 }
 
 .social__loadmore {
-    padding: 0;
     padding-left: 65px;
-    padding-top: 10px;
     padding-bottom: 15px;
+    padding-top: 10px;
     position: relative;
 
     text-align: left;
