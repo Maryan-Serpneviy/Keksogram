@@ -1,4 +1,4 @@
-const pictureTemplate = document.querySelector('#picture').content;
+const pictureTemplate = document.querySelector('#picture-template').content;
 
 export default data => {
     const thumbElement = pictureTemplate.querySelector('.picture__link').cloneNode(true);

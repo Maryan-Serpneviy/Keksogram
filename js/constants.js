@@ -1,8 +1,11 @@
 export default {
-    TIMEOUT: 10000,
     URL: {
         LOAD: 'https://js.dump.academy/kekstagram/data',
         SAVE: 'https://js.dump.academy/kekstagram',
+    },
+    TIMEOUT: {
+        XHR: 10000,
+        DEBOUNCE: 0.5
     },
     EFFECT: {
         VANISH: 'transform: scale(0); transition: all 0.3s ease'
@@ -28,5 +31,6 @@ export default {
         STEP: 10,
         DEFAULT: 80
     },
-    NEW_AMOUNT: 12
+    NEW_AMOUNT: 12,
+    LOAD_AMOUNT: 5
 }

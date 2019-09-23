@@ -6,11 +6,9 @@ import { picturesData } from './picture.js';
 const imgFilters = document.querySelector('.img-filters');
 const imgFiltersForm = imgFilters.querySelector('.img-filters__form');
 const imgFiltersBtns = imgFiltersForm.querySelectorAll('.img-filters__button');
-const btnPopular = imgFilters.querySelector('#filter-popular');
-const btnNew = imgFilters.querySelector('#filter-new');
-const btnDiscussed = imgFilters.querySelector('#filter-discussed');
 const picturesContainer = document.querySelector('.pictures')
 const MAGIC_NUMBER = 5;
+let picturesToFilter = new Array();
 
 const removePictures = () => {
     for (let i = 0; i < MAGIC_NUMBER; i++) {
@@ -22,39 +20,32 @@ const removePictures = () => {
     }
 };
 
-const renderPictures = data => {
+const renderPictures = () => {
+    removePictures();
     const fragment = document.createDocumentFragment();
-    data.forEach(element => {
+    picturesToFilter.forEach(element => {
         fragment.appendChild(render(element));
     });
     picturesContainer.appendChild(fragment);
 };
 
-const switchButton = evt => {
+const filterSwitchHandler = evt => {
+    const targetBtn = evt.target.textContent.toLowerCase();
     Array.prototype.forEach.call(imgFiltersBtns, element => {
         element.classList.remove('img-filters__button--active');
     });
     evt.target.classList.add('img-filters__button--active');
-}
-
-const sortPopular = () => {
-    removePictures();
-    renderPictures(picturesData);
+    switch(targetBtn) {
+        case 'new':
+            picturesToFilter = picturesData.getRandomUniques(Const.NEW_AMOUNT);
+            break;
+        case 'discussed':
+            picturesToFilter = Array.from(picturesData).sort((prev, next) => next.comments.length - prev.comments.length);
+            break;
+        default:
+            picturesToFilter = picturesData;
+    }
+    Util.debounce(renderPictures, Const.TIMEOUT.DEBOUNCE);
 };
 
-const sortNew = () => {
-    removePictures();
-    const filterNewArr = Util.getRandomUniqueArrayElements(picturesData, Const.NEW_AMOUNT);
-    renderPictures(filterNewArr);
-}
-
-const sortDiscussed = () => {
-    removePictures();
-    const filterDiscussedArr = Array.from(picturesData).sort((prev, next) => next.comments.length - prev.comments.length);
-    renderPictures(filterDiscussedArr);
-};
-
-imgFiltersForm.addEventListener ('click', switchButton);
-btnPopular.addEventListener ('click', sortPopular);
-btnNew.addEventListener ('click', sortNew);
-btnDiscussed.addEventListener ('click', sortDiscussed);
+imgFiltersForm.addEventListener ('click', filterSwitchHandler);

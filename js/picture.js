@@ -1,4 +1,3 @@
-import Util from './utils.js';
 import AJAX from './ajax.js';
 import render from './render.js';
 
@@ -8,8 +7,8 @@ const imgFilters = document.querySelector('.img-filters');
 let picturesData = [];
 
 const renderPictures = remoteData => {
-    picturesData = remoteData;   
-    Util.shuffle (remoteData);
+    picturesData = remoteData;
+    remoteData.shuffle();
     const fragment = document.createDocumentFragment();
     remoteData.forEach(element => {
         fragment.appendChild(render(element));

@@ -11,3 +11,4 @@ importModule('filters');
 importModule('slider');
 importModule('resize');
 importModule('sort');
+importModule('comments');

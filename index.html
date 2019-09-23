@@ -30,6 +30,7 @@
     <script type="module" src="js/slider.js"></script>
     <script type="module" src="js/resize.js"></script>
     <script type="module" src="js/sort.js"></script>
+    <script type="module" src="js/comments.js"></script>
     -->
     <script src="index.js"></script>
 </head>
@@ -167,8 +168,9 @@
                         <p class="social__caption">Тестим новую камеру! =)</p>
                         <p class="social__likes">Like <span class="likes-count">356</span></p>
                     </div>
-                    <div class="social__comment-count">5 of <span class="comments-count">125</span> comments</div>
+                    <div class="social__comment-count"><span class="comments-count">125</span></div>
                     <ul class="social__comments">
+                        <!--
                         <li class="social__comment">
                             <img class="social__picture" src="img/avatar-4.svg" alt="Аватар комментатора фотографии" width="35" height="35">
                             <p class="social__text">Мега фото! Просто обалдеть. Как вам так удалось?</p>
@@ -177,6 +179,7 @@
                             <img class="social__picture" src="img/avatar-3.svg" alt="Аватар комментатора фотографии" width="35" height="35">
                             <p class="social__text">Да это фоташоп!!!!!!!!</p>
                         </li>
+                        -->
                     </ul>
                     <button class="social__loadmore" type="button">Load more</button>
                     <div class="social__footer">
@@ -215,7 +218,7 @@
         </div>
     </footer>
 
-    <template id="picture">
+    <template id="picture-template">
         <a href="#" class="picture__link">
             <img class="picture__img" src="" width="182" height="182" alt="Случайная фотография">
             <p class="picture__stats">
@@ -236,6 +239,13 @@
                 <a class="error__link" href="#">Upload another file</a>
             </div>
         </div>
+    </template>
+
+    <template id="comment-template">
+        <li class="social__comment">
+            <img class="social__picture" src="" alt="Аватар комментатора фотографии" width="35" height="35">
+            <p class="social__text">BUG</p>
+        </li>
     </template>
 </body>
 
