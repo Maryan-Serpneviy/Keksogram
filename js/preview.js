@@ -19,26 +19,26 @@ const likePicture = () => {
             likes.textContent = parseInt(likes.textContent) + 1;
             liked = true;
         }
-    }
+    };
 };
 
 const bigPictureHandler = evt => {
     const target = evt.target;
-    if (target.className === 'picture__img') {           
+    if (target.className === 'picture__img') {
         picturesData.forEach(element => {
             if (target.src.includes(element.url)) {
-                showBigPicture (element);
+                showBigPicture(element);
             }
-        })
+        });
         bigPicture.classList.remove('hidden');
     }
-    document.addEventListener ('keydown', onBigPictureEscPress); 
+    document.addEventListener('keydown', onBigPictureEscPress);
 };
 
 const closeBigPicture = () => {
     bigPicture.classList.add('hidden');
     btnLoadMore.classList.remove('hidden');
-    document.removeEventListener ('keydown', onBigPictureEscPress);
+    document.removeEventListener('keydown', onBigPictureEscPress);
 };
 
 const onBigPictureEscPress = evt => {
@@ -52,9 +52,9 @@ const onDocumentClick = evt => {
     if (target.classList.contains('big-picture')) {
         closeBigPicture();
     }
-}
+};
 
-imgContainer.addEventListener ('click', bigPictureHandler);
-bigPictureCloseBtn.addEventListener ('click', closeBigPicture);
-document.addEventListener ('click', onDocumentClick);
-likes.addEventListener ('click', likePicture());
+imgContainer.addEventListener('click', bigPictureHandler);
+bigPictureCloseBtn.addEventListener('click', closeBigPicture);
+document.addEventListener('click', onDocumentClick);
+likes.addEventListener('click', likePicture());

@@ -6,7 +6,7 @@ import { picturesData } from './picture.js';
 const imgFilters = document.querySelector('.img-filters');
 const imgFiltersForm = imgFilters.querySelector('.img-filters__form');
 const imgFiltersBtns = imgFiltersForm.querySelectorAll('.img-filters__button');
-const picturesContainer = document.querySelector('.pictures')
+const picturesContainer = document.querySelector('.pictures');
 const MAGIC_NUMBER = 5;
 let picturesToFilter = new Array();
 
@@ -48,4 +48,4 @@ const filterSwitchHandler = evt => {
     Util.debounce(renderPictures, Const.TIMEOUT.DEBOUNCE);
 };
 
-imgFiltersForm.addEventListener ('click', filterSwitchHandler);
+imgFiltersForm.addEventListener('click', filterSwitchHandler);

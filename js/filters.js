@@ -43,10 +43,10 @@ const dynamicSaturation = () => {
 
 const onEffectChange = evt => {
     const effectName = evt.target.value;
-    setEffectSaturation (effectName, getSaturation);
+    setEffectSaturation(effectName, getSaturation);
 };
 
-scaleLine.addEventListener ('click', dynamicSaturation);
-effectsList.addEventListener ('change', onEffectChange);
+scaleLine.addEventListener('click', dynamicSaturation);
+effectsList.addEventListener('change', onEffectChange);
 
 export { getSaturation, dynamicSaturation, imgUploadPreview };

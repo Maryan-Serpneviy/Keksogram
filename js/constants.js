@@ -1,7 +1,7 @@
 export default {
     URL: {
         LOAD: 'https://js.dump.academy/kekstagram/data',
-        SAVE: 'https://js.dump.academy/kekstagram',
+        SAVE: 'https://js.dump.academy/kekstagram'
     },
     TIMEOUT: {
         XHR: 10000,
@@ -33,4 +33,4 @@ export default {
     },
     NEW_AMOUNT: 12,
     LOAD_AMOUNT: 5
-}
+};

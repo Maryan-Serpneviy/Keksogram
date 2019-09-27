@@ -1,5 +1,5 @@
 import { getSaturation, dynamicSaturation } from './filters.js';
-    
+
 const imgUpload = document.querySelector('.img-upload__overlay');
 const scale = imgUpload.querySelector('.scale');
 const scaleValue = imgUpload.querySelector('.scale__value');
@@ -24,19 +24,17 @@ const getPinPosition = (coord, shift) => {
     return pinPosition;
 };
 
-scalePin.addEventListener ('mousedown', evt => {
+scalePin.addEventListener('mousedown', evt => {
     evt.preventDefault();
     let coord = evt.clientX;
-    
     const onMouseMove = moveEvt => {
         moveEvt.preventDefault();
         const shift = coord - moveEvt.clientX;
         coord = moveEvt.clientX;
-        const pinPosition = getPinPosition (coord, shift);
+        const pinPosition = getPinPosition(coord, shift);
         scalePin.style.left = pinPosition;
         scaleLevel.style.width = pinPosition;
         window.pinPosition = pinPosition;
-        
         // dynamic change of effect saturation
         dynamicSaturation();
     };
@@ -45,14 +43,14 @@ scalePin.addEventListener ('mousedown', evt => {
         scalePin.style.left = pinPosition;
         scaleLevel.style.width = pinPosition;
         scaleValue.value = getSaturation();
-        document.removeEventListener ('mousemove', onMouseMove);
-        document.removeEventListener ('mouseup', onMouseUp);
+        document.removeEventListener('mousemove', onMouseMove);
+        document.removeEventListener('mouseup', onMouseUp);
     };
-    document.addEventListener ('mousemove', onMouseMove);
-    document.addEventListener ('mouseup', onMouseUp);
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup', onMouseUp);
 });
 
-scaleLine.addEventListener ('mouseup', evt => {
+scaleLine.addEventListener('mouseup', evt => {
     evt.preventDefault();
     scalePin.style.left = `${evt.offsetX}px`;
     scaleLevel.style.width = `${evt.offsetX}px`;

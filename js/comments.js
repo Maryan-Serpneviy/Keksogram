@@ -33,17 +33,17 @@ const renderComments = () => {
     for (let i = 0; i < amount; i++) {
         const commentElement = commentTemplate.cloneNode(true);
         commentElement.querySelector('.social__picture').src = comments[i].avatar;
-        commentElement.querySelector('.social__text').textContent = comments[i].message;       
+        commentElement.querySelector('.social__text').textContent = comments[i].message;
         commentsContainer.appendChild(commentElement);
     }
     comments.splice(0,amount);
     currentComments += amount;
-    commentCount.innerHTML = `Shown <i>${currentComments}</i> comments out of <i>${totalComments}</i>`
+    commentCount.innerHTML = `Shown <i>${currentComments}</i> comments out of <i>${totalComments}</i>`;
 };
 
 const renderCommentsHandler = evt => {
     const target = evt.target;
-    if (target.className === 'picture__img') {           
+    if (target.className === 'picture__img') {
         picturesData.forEach(element => {
             if (target.src.includes(element.url)) {
                 if (element.url !== currentUrl) {
@@ -55,11 +55,11 @@ const renderCommentsHandler = evt => {
                 currentUrl = element.url;
                 renderComments();
             }
-        })
+        });
     }
 };
 
-imgContainer.addEventListener ('click', renderCommentsHandler);
-btnLoadMore.addEventListener ('click', renderComments);
+imgContainer.addEventListener('click', renderCommentsHandler);
+btnLoadMore.addEventListener('click', renderComments);
 
 AJAX.load(loadComments, AJAX.errorHandler);

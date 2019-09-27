@@ -9,7 +9,7 @@ const validateHashtags = hashtagsArr => {
     const isInvalid = () => {
         userHashtags.style.border = `2px solid ${Const.COLOR.DANGER}`;
         userHashtags.style.outline = 'none';
-    }
+    };
     userHashtags.setCustomValidity('');
     hashtagsArr.forEach(element => {
         if (element === '#') {
@@ -36,10 +36,10 @@ const validateHashtags = hashtagsArr => {
     }
 };
 
-userHashtags.addEventListener ('input', () => {
+userHashtags.addEventListener('input', () => {
     const hashtagsArr = userHashtags.value.split(' ');
 
     userHashtags.style.border = 'none';
     userHashtags.style.outline = '5px auto -webkit-focus-ring-color';
-    validateHashtags (hashtagsArr);
+    validateHashtags(hashtagsArr);
 });

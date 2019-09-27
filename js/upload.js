@@ -9,14 +9,14 @@ const imgSize = imgUpload.querySelector('.resize__control--value');
 
 const openFilters = () => {
     imgUpload.classList.remove('hidden');
-    document.addEventListener ('keydown', onFiltersEscPress);
+    document.addEventListener('keydown', onFiltersEscPress);
     imgSize.value = `${Const.RESIZE_PARAMS.DEFAULT}%`;
     resizeImage(1);
 };
 
 const closeFilters = () => {
     imgUpload.classList.add('hidden');
-    clearFileInputField('#upload-file');  
+    clearFileInputField('#upload-file');
     document.removeEventListener('keydown', onFiltersEscPress);
 };
 
@@ -41,8 +41,8 @@ const clearFileInputField = Id => {
     document.querySelector(Id).value = '';
 };
 
-uploadFile.addEventListener ('change', () => {
+uploadFile.addEventListener('change', () => {
     onPhotoUpload();
     openFilters();
 });
-uploadCancel.addEventListener ('click', closeFilters);
+uploadCancel.addEventListener('click', closeFilters);

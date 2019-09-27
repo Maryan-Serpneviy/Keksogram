@@ -1,7 +1,7 @@
 import Const from './constants.js';
 
 export default {
-    request (onLoad, onError, url, method, data) {
+    request(onLoad, onError, url, method, data) {
         const xhr = new XMLHttpRequest();
         xhr.responseType = 'json';
 
@@ -28,31 +28,31 @@ export default {
             }
         });
 
-        xhr.addEventListener ('error', function() {
+        xhr.addEventListener('error', () => {
             this.errorHandler('Connection error');
         });
 
-        xhr.addEventListener ('timeout', function() {
+        xhr.addEventListener('timeout', () => {
             this.errorHandler(`Request did not manage to fulfill in ${xhr.timeout / 1000} s`);
         });
 
         xhr.timeout = Const.TIMEOUT.XHR;
-        xhr.open (method, url);
-        xhr.send (data);
+        xhr.open(method, url);
+        xhr.send(data);
     },
     load (onLoad, onError) {
-        this.request (onLoad, onError, Const.URL.LOAD, 'GET');
+        this.request(onLoad, onError, Const.URL.LOAD, 'GET');
     },
     save (data, onLoad, onError) {
-        this.request (onLoad, onError, Const.URL.SAVE, 'POST', data);
+        this.request(onLoad, onError, Const.URL.SAVE, 'POST', data);
     },
     errorHandler (errorMessage) {
         const errorBlock = document.querySelector('.download-error');
         errorBlock.style = 'visibility: visible';
-        document.querySelector('.download-error__message').textContent =  `Error! ${errorMessage}`;
-        const errorClose = document.querySelector('.download-error__close')
+        document.querySelector('.download-error__message').textContent = `Error! ${errorMessage}`;
+        const errorClose = document.querySelector('.download-error__close');
         errorClose.addEventListener('click', () => {
             errorBlock.style = Const.EFFECT.VANISH;
-        });            
+        });
     }
 };

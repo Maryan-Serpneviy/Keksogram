@@ -5,8 +5,8 @@ export default {
             const ms = s * 1000;
             clearTimeout(lastTimeout);
             lastTimeout = setTimeout(() => {
-                cb()
-            }, ms)
+                cb();
+            }, ms);
         };
     })()
 };
