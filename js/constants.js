@@ -1,10 +1,12 @@
 export default {
-    URL: {
+    API: {
         LOAD: 'https://js.dump.academy/kekstagram/data',
         SAVE: 'https://js.dump.academy/kekstagram'
     },
     TIMEOUT: {
         XHR: 10000,
+        RELOAD: 5000,
+        SUCCESS: 2000,
         DEBOUNCE: 0.5
     },
     EFFECT: {
@@ -16,6 +18,7 @@ export default {
     },
     COLOR: {
         SUCCESS: '#28a745',
+        WARNING: '#ffc107',
         DANGER: '#dc3545'
     },
     FILTERS_COEF: {

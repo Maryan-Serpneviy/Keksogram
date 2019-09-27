@@ -81,36 +81,6 @@ main {
     overflow: hidden;
 }
 
-/* Ajax error block */
-
-.download-error {
-    position: absolute;
-    z-index: 11;
-    top: 0;
-    left:0;
-    right: 0;
-    font-size: 30px;
-    line-height: 35px;
-    background-color: #dc3545;
-    display: flex;
-    flex-wrap: wrap;
-    visibility: hidden;
-    text-align: center;
-}
-  
-.download-error__message {
-    flex-grow: 97;
-}
-  
-.download-error__close {
-    font-family: 'monospace';
-    flex-grow: 3;
-    transform: rotate(45deg);
-    font-weight: bold;
-    cursor: pointer;
-    user-select: none;
-}
-
 /* Кнопка закрытия */
 
 .cancel {
@@ -1295,6 +1265,37 @@ main {
     background-position: 0 -105px;
 }
 
+/* AJAX status */
+
+.ajax-status {
+    position: absolute;
+    z-index: 11;
+    top: 0;
+    left:0;
+    right: 0;
+    font-size: 30px;
+    line-height: 38px;
+    font-family: "Lucida console", Arial, Helvetica, sans-serif;
+    text-transform: none;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    visibility: hidden;
+}
+  
+.ajax-status__message {
+    flex-grow: 97;
+}
+  
+.ajax-status__close {
+    flex-grow: 3;
+    transform: rotate(45deg);
+    font-weight: bold;
+    cursor: pointer;
+    width: 60px;
+    height: 40px;
+    user-select: none;
+}
 
 @media (min-width: 1024px) and (max-width: 1359px) {
     .container {

@@ -12,7 +12,7 @@ export default {
 };
 
 Array.prototype.shuffle = function() {
-    for (let i = this.length - 1; i > 0; i--) {
+    for (var i = this.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [this[i], this[j]] = [this[j], this[i]];
     }
@@ -20,18 +20,18 @@ Array.prototype.shuffle = function() {
 };
 
 Array.prototype.getRandomUniques = function(amount) {
-    const shuffle = arrayToShuffle => {
-        const shuffledArray = Array.from(arrayToShuffle);
-        for (let i = shuffledArray.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
+    function shuffle(arrayToShuffle) {
+        var shuffledArray = Array.from(arrayToShuffle);
+        for (var i = shuffledArray.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
             [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
         }
         return shuffledArray;
-    };
-    const uniquesArray = [...new Set(this)];
-    const randomsArray = shuffle(uniquesArray);
-    let limitedArray = [];
-    for (let i = 0; i < amount; i++) {
+    }
+    var uniquesArray = [...new Set(this)];
+    var randomsArray = shuffle(uniquesArray);
+    var limitedArray = [];
+    for (var i = 0; i < amount; i++) {
         limitedArray.push(randomsArray[i]);
     }
     return limitedArray;

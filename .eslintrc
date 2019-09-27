@@ -30,7 +30,7 @@
 			"ignoreStrings": true,
 			"ignoreTemplateLiterals": true
 		}],
-		"max-params": ["warn", 5],
+		"max-params": ["warn", 6],
 		"new-cap": ["error", {
 			"newIsCap": true,
 			"newIsCapExceptions": [],
