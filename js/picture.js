@@ -5,6 +5,7 @@ const picturesContainer = document.querySelector('.pictures');
 const imgFilters = document.querySelector('.img-filters');
 
 let picturesData = [];
+Object.freeze(picturesData);
 
 const renderPictures = remoteData => {
     picturesData = remoteData;
