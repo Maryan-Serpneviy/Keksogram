@@ -62,4 +62,4 @@ const renderCommentsHandler = evt => {
 imgContainer.addEventListener('click', renderCommentsHandler);
 btnLoadMore.addEventListener('click', renderComments);
 
-AJAX.load(loadComments, AJAX.statusHandler);
+AJAX.load(loadComments, AJAX.statusHandler, 'downloaded');
