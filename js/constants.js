@@ -21,6 +21,12 @@ export default {
         WARNING: '#ffc107',
         DANGER: '#dc3545'
     },
+    RESIZE_PARAMS: {
+        MIN: 30,
+        MAX: 100,
+        STEP: 10,
+        DEFAULT: 80
+    },
     FILTERS_COEF: {
         CHROME: 0.01,
         SEPIA: 0.01,
@@ -28,12 +34,7 @@ export default {
         PHOBOS: 0.035,
         HEAT: 0.045
     },
-    RESIZE_PARAMS: {
-        MIN: 30,
-        MAX: 100,
-        STEP: 10,
-        DEFAULT: 80
-    },
+    SCALE_LENGTH: 450,
     NEW_AMOUNT: 12,
     LOAD_AMOUNT: 5,
     IMAGE_FORMATS: ['gif', 'jpg', 'jpeg', 'png']
