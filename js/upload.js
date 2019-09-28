@@ -5,7 +5,7 @@ import { resizeImage } from './resize.js';
 const imgUpload = document.querySelector('.img-upload__overlay');
 const uploadFile = document.querySelector('#upload-file');
 const uploadCancel = document.querySelector('#upload-cancel');
-const uploadPreview = document.querySelector('.img-upload__preview');
+const imgPreview = document.querySelector('.img__preview');
 const imgSize = imgUpload.querySelector('.resize__control--value');
 
 const openFilters = () => {
@@ -33,8 +33,9 @@ uploadFile.addEventListener('change', () => {
 
     if (matches) {
         const reader = new FileReader();
-        reader.addEventListener('load', evt => {
-            uploadPreview.innerHTML = `<img class="img__preview" src="${evt.target.result}" title="${escape(fileName)}"/>`;
+        reader.addEventListener('load', () => {
+            imgPreview.src = reader.result;
+            imgPreview.title = `${escape(fileName)}`;
         });
         reader.readAsDataURL(file);
         openFilters();
