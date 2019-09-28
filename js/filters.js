@@ -46,7 +46,6 @@ const updateFilter = update => {
 };
 
 const dynamicSaturation = function() {
-    console.log('setfilter')
     setSaturation();
     switch (currentFilter) {
         case 'chrome':
