@@ -791,13 +791,18 @@ main {
     font-size: 0;
 
     background-color: #314359;
-    background-image: url("../img/upload-default-image.jpg");
+    /* background-image: url("../img/upload-default-image.jpg"); */
     background-repeat: no-repeat;
     background-position: center;
     background-size: 100% auto;
 
     border: solid 5px transparent;
     border-radius: 5px;
+}
+
+.effects__preview--image {
+    width: 70px;
+    height: 70px;
 }
 
 .effects__preview:last-of-type {
