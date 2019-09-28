@@ -44,19 +44,19 @@ const onMoveStart = function(evt) {
         scaleLevel.style.width = pinPosition;
         scaleValue.value = setSaturation();
 
-        document.removeEventListener('mousemove', onMove);
-        document.removeEventListener('mouseup', onMoveEnd);
+        //document.removeEventListener('mousemove', onMove);
+        //document.removeEventListener('mouseup', onMoveEnd);
         document.removeEventListener('touchmove', onMove);
         document.removeEventListener('touchend', onMoveEnd);
     };
     document.addEventListener('touchmove', onMove);
-    document.addEventListener('mousemove', onMove);
+    //document.addEventListener('mousemove', onMove);
     document.addEventListener('touchend', onMoveEnd);
-    document.addEventListener('mouseup', onMoveEnd);
+    //document.addEventListener('mouseup', onMoveEnd);
 };
 
 scalePin.addEventListener('touchstart', onMoveStart);
-scalePin.addEventListener('mousedown', onMoveStart);
+//scalePin.addEventListener('mousedown', onMoveStart);
 
 scaleLine.addEventListener('mouseup', evt => {
     evt.preventDefault();
