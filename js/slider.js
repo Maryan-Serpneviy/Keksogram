@@ -32,10 +32,9 @@ scalePin.addEventListener('mousedown', function(evt) {
         moveEvt.preventDefault();
         const shift = coord - moveEvt.clientX;
         coord = moveEvt.clientX;
-        const pinPosition = getPinPosition(coord, shift);
+        window.pinPosition = getPinPosition(coord, shift);
         this.style.left = pinPosition;
         scaleLevel.style.width = pinPosition;
-        window.pinPosition = pinPosition;
         // dynamic change of effect saturation
         setFilter();
     };
