@@ -18,6 +18,9 @@ const likePicture = () => {
         if (!liked) {
             likes.textContent = parseInt(likes.textContent) + 1;
             liked = true;
+        } else {
+            likes.textContent = parseInt(likes.textContent) - 1;
+            liked = false;
         }
     };
 };
