@@ -35,5 +35,6 @@ export default {
         DEFAULT: 80
     },
     NEW_AMOUNT: 12,
-    LOAD_AMOUNT: 5
+    LOAD_AMOUNT: 5,
+    IMAGE_FORMATS: ['gif', 'jpg', 'jpeg', 'png']
 };

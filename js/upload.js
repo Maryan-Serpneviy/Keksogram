@@ -1,4 +1,5 @@
 import Const from './constants.js';
+import AJAX from './ajax.js';
 import { resizeImage } from './resize.js';
 
 const imgUpload = document.querySelector('.img-upload__overlay');
@@ -16,7 +17,6 @@ const openFilters = () => {
 
 const closeFilters = () => {
     imgUpload.classList.add('hidden');
-    clearFileInputField('#upload-file');
     document.removeEventListener('keydown', onFiltersEscPress);
 };
 
@@ -26,23 +26,21 @@ const onFiltersEscPress = evt => {
     }
 };
 
-const onPhotoUpload = () => {
-    const file = uploadFile.files[0];
-    const reader = new FileReader();
-    reader.onload = (FILE => {
-        return evt => {
-            uploadPreview.innerHTML = `<img class="img__preview" src="${evt.target.result}" title="${escape(FILE.name)}"/>`;
-        };
-    })(file);
-    reader.readAsDataURL(file);
-};
-
-const clearFileInputField = Id => {
-    document.querySelector(Id).value = '';
-};
-
 uploadFile.addEventListener('change', () => {
-    onPhotoUpload();
-    openFilters();
+    const file = uploadFile.files[0];
+    const fileName = file.name.toLowerCase();
+    const matches = Const.IMAGE_FORMATS.some(it => fileName.endsWith(it));
+
+    if (matches) {
+        const reader = new FileReader();
+        reader.addEventListener('load', evt => {
+            uploadPreview.innerHTML = `<img class="img__preview" src="${evt.target.result}" title="${escape(fileName)}"/>`;
+        });
+        reader.readAsDataURL(file);
+        openFilters();
+        return;
+    }
+    AJAX.statusHandler('Error! Wrong file type');
 });
+
 uploadCancel.addEventListener('click', closeFilters);

@@ -58,12 +58,15 @@ export default {
         this.request(onLoad, onError, Const.API.SAVE, 'POST', status, data);
     },
     statusHandler(status) {
+        if (status.toLowerCase().includes('error')) {
+            statusColor = Const.COLOR.DANGER;
+        }
         statusBlock.style = `visibility: visible; background-color: ${statusColor}`;
         statusMessage.textContent = `${status}`;
         statusClose.addEventListener('click', () => {
             statusBlock.style = Const.EFFECT.VANISH;
         });
-        if (status.includes('Data')) {
+        if (status.includes('Data') || status.toLowerCase().includes('error')) {
             setTimeout(() => {
                 statusBlock.style = Const.EFFECT.VANISH;
             }, Const.TIMEOUT.SUCCESS);
