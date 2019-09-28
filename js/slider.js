@@ -65,4 +65,4 @@ const moveEnd = evt => {
 };
 
 scaleLine.addEventListener('mouseup', moveEnd);
-scaleLine.addEventListener('touchend', moveEnd);
+//scaleLine.addEventListener('touchend', moveEnd);
