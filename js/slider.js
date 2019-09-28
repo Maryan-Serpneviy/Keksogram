@@ -25,10 +25,10 @@ const getPinPosition = (coord, shift) => {
     return pinPosition;
 };
 
-scalePin.addEventListener('mousedown', function(evt) {
+const onMoveStart = function(evt) {
     evt.preventDefault();
     let coord = evt.clientX;
-    const onMouseMove = moveEvt => {
+    const onMove = moveEvt => {
         moveEvt.preventDefault();
         const shift = coord - moveEvt.clientX;
         coord = moveEvt.clientX;
@@ -38,20 +38,31 @@ scalePin.addEventListener('mousedown', function(evt) {
         // dynamic change of effect saturation
         setFilter();
     };
-    const onMouseUp = upEvt => {
+    const onMoveEnd = upEvt => {
         upEvt.preventDefault();
         this.style.left = pinPosition;
         scaleLevel.style.width = pinPosition;
         scaleValue.value = setSaturation();
-        document.removeEventListener('mousemove', onMouseMove);
-        document.removeEventListener('mouseup', onMouseUp);
-    };
-    document.addEventListener('mousemove', onMouseMove);
-    document.addEventListener('mouseup', onMouseUp);
-});
 
-scaleLine.addEventListener('mouseup', function(evt) {
+        document.removeEventListener('mousemove', onMove);
+        document.removeEventListener('mouseup', onMoveEnd);
+        document.removeEventListener('touchmove', onMove);
+        document.removeEventListener('touchend', onMoveEnd);
+    };
+    document.addEventListener('mousemove', onMove);
+    document.addEventListener('mouseup', onMoveEnd);
+    document.addEventListener('touchmove', onMove);
+    document.addEventListener('touchend', onMoveEnd);
+};
+
+scalePin.addEventListener('mousedown', onMoveStart);
+scalePin.addEventListener('touchstart', onMoveStart);
+
+const moveEnd = evt => {
     evt.preventDefault();
     scalePin.style.left = `${evt.offsetX}px`;
     scaleLevel.style.width = `${evt.offsetX}px`;
-});
+};
+
+scaleLine.addEventListener('mouseup', moveEnd);
+scaleLine.addEventListener('touchend', moveEnd);
