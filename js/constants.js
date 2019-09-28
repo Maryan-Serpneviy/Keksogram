@@ -25,8 +25,8 @@ export default {
         CHROME: 0.01,
         SEPIA: 0.01,
         MARVIN: 1,
-        PHOBOS: 0.15,
-        HEAT: 0.05
+        PHOBOS: 0.035,
+        HEAT: 0.045
     },
     RESIZE_PARAMS: {
         MIN: 30,
