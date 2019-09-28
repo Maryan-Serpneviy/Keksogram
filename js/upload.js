@@ -7,6 +7,7 @@ const uploadFile = document.querySelector('#upload-file');
 const uploadCancel = document.querySelector('#upload-cancel');
 const imgPreview = document.querySelector('.img__preview');
 const imgSize = imgUpload.querySelector('.resize__control--value');
+const effectsPreview = document.querySelectorAll('.effects__preview');
 
 const openFilters = () => {
     imgUpload.classList.remove('hidden');
@@ -36,6 +37,10 @@ uploadFile.addEventListener('change', () => {
         reader.addEventListener('load', () => {
             imgPreview.src = reader.result;
             imgPreview.title = `${escape(fileName)}`;
+            effectsPreview.forEach(preview => {
+                preview.style.backgroundImage = 'none';
+                preview.innerHTML = `<img class="effects__preview--image" src="${reader.result}">`;
+            });
         });
         reader.readAsDataURL(file);
         openFilters();
