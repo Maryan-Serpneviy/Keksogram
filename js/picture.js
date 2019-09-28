@@ -5,6 +5,7 @@ const picturesContainer = document.querySelector('.pictures');
 const imgFilters = document.querySelector('.img-filters');
 
 let picturesData = [];
+Object.freeze(picturesData);
 
 const renderPictures = remoteData => {
     picturesData = remoteData;
@@ -17,6 +18,6 @@ const renderPictures = remoteData => {
     imgFilters.classList.remove('img-filters--inactive');
 };
 
-AJAX.load(renderPictures, AJAX.errorHandler);
+AJAX.load(renderPictures, AJAX.statusHandler, 'downloaded');
 
 export { picturesData };

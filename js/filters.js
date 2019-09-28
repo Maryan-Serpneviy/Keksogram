@@ -4,49 +4,80 @@ const imgUpload = document.querySelector('.img-upload__overlay');
 const scaleValue = imgUpload.querySelector('.scale__value');
 const scaleLine = imgUpload.querySelector('.scale__line');
 const scalePin = imgUpload.querySelector('.scale__pin');
-
-const getSaturation = () => {
-    const SCALE_LENGTH = 450;
-    const scalePosition = scalePin.offsetLeft;
-    const saturation = Math.round(scalePosition / SCALE_LENGTH * 100);
-    scaleValue.value = saturation; // set effect saturation into input field
-    return saturation;
-};
-
-const imgUploadPreview = imgUpload.querySelector('.img-upload__preview');
+const imgPreview = document.querySelector('.img__preview');
 const effectsList = imgUpload.querySelector('.effects__list');
+
+const Filter = {
+    Chrome: '',
+    Sepia: '',
+    Marvin: '',
+    Phobos: '',
+    Heat: ''
+};
 
 // original photo (no effect) is selected by default
 // this is needed for 'change' event to work properly
 imgUpload.querySelector('.effects__radio').checked = true;
 
-const setEffectSaturation = (effect, saturation) => {
-    if (effect === 'chrome' || effect === 'gr') {
-        imgUploadPreview.style.filter = `grayscale(${saturation() * Const.FILTERS_COEF.CHROME})`;
-    } else if (effect === 'sepia' || effect === 'se') {
-        imgUploadPreview.style.filter = `sepia(${saturation() * Const.FILTERS_COEF.SEPIA})`;
-    } else if (effect === 'marvin' || effect === 'in') {
-        imgUploadPreview.style.filter = `invert(${saturation() * Const.FILTERS_COEF.MARVIN}%)`;
-    } else if (effect === 'phobos' || effect === 'bl') {
-        imgUploadPreview.style.filter = `blur(${saturation() * Const.FILTERS_COEF.PHOBOS}px)`;
-    } else if (effect === 'heat' || effect === 'br') {
-        imgUploadPreview.style.filter = `brightness(${saturation() * Const.FILTERS_COEF.HEAT})`;
-    } else {
-        imgUploadPreview.style.filter = `none`;
+// store current filter on effect change
+let currentFilter = null;
+
+const setSaturation = () => {
+    const scalePosition = scalePin.offsetLeft;
+    const saturation = Math.round(scalePosition / Const.SCALE_LENGTH * 100);
+    scaleValue.value = saturation; // set effect saturation into input field
+    return saturation;
+};
+
+const updateFilter = update => {
+    let imgFilters = '';
+    for (const key in Filter) {
+        if (Object.prototype.hasOwnProperty.call(Filter, key)) {
+            if (update === '') {
+                Filter[key] = '';
+            }
+            if (Filter[key].charAt(2) === update.charAt(2)) {
+                Filter[key] = update;
+            }
+            imgFilters += Filter[key];
+        }
+    }
+    return imgFilters;
+};
+
+const dynamicSaturation = function() {
+    setSaturation();
+    switch (currentFilter) {
+        case 'chrome':
+            Filter.Chrome = `grayscale(${scaleValue.value * Const.FILTERS_COEF.CHROME}) `;
+            this.style.filter = updateFilter(`grayscale(${scaleValue.value * Const.FILTERS_COEF.CHROME}) `);
+            break;
+        case 'sepia':
+            Filter.Sepia = `sepia(${scaleValue.value * Const.FILTERS_COEF.SEPIA}) `;
+            this.style.filter = updateFilter(`sepia(${scaleValue.value * Const.FILTERS_COEF.SEPIA}) `);
+            break;
+        case 'marvin':
+            Filter.Marvin = `invert(${scaleValue.value * Const.FILTERS_COEF.MARVIN}%) `;
+            this.style.filter = updateFilter(`invert(${scaleValue.value * Const.FILTERS_COEF.MARVIN}%) `);
+            break;
+        case 'phobos':
+            Filter.Phobos = `blur(${scaleValue.value * Const.FILTERS_COEF.PHOBOS}px) `;
+            this.style.filter = updateFilter(`blur(${scaleValue.value * Const.FILTERS_COEF.PHOBOS}px) `);
+            break;
+        case 'heat':
+            Filter.Heat = `brightness(${scaleValue.value * Const.FILTERS_COEF.HEAT}) `;
+            this.style.filter = updateFilter(`brightness(${scaleValue.value * Const.FILTERS_COEF.HEAT}) `);
+            break;
+        default:
+            this.style.filter = updateFilter('');
     }
 };
+const setFilter = dynamicSaturation.bind(imgPreview);
 
-const dynamicSaturation = () => {
-    const effectName = imgUploadPreview.style.filter.substr(0, 2);
-    setEffectSaturation(effectName, getSaturation);
-};
+effectsList.addEventListener('change', evt => {
+    currentFilter = evt.target.value;
+    setFilter();
+});
+scaleLine.addEventListener('click', setFilter);
 
-const onEffectChange = evt => {
-    const effectName = evt.target.value;
-    setEffectSaturation (effectName, getSaturation);
-};
-
-scaleLine.addEventListener ('click', dynamicSaturation);
-effectsList.addEventListener ('change', onEffectChange);
-
-export { getSaturation, dynamicSaturation, imgUploadPreview };
+export { setSaturation, setFilter, imgPreview };

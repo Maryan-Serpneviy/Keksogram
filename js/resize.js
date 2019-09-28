@@ -23,11 +23,11 @@ const resizeImage = sign => {
 };
 resizeImage(1);
 
-imgReduce.addEventListener ('click', () => {
+imgReduce.addEventListener('click', () => {
     resizeImage(1);
 });
 
-imgEnlarge.addEventListener ('click', () => {
+imgEnlarge.addEventListener('click', () => {
     resizeImage(-1);
 });
 

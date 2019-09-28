@@ -1,22 +1,22 @@
 import Const from './constants.js';
+import AJAX from './ajax.js';
 import { resizeImage } from './resize.js';
 
 const imgUpload = document.querySelector('.img-upload__overlay');
 const uploadFile = document.querySelector('#upload-file');
 const uploadCancel = document.querySelector('#upload-cancel');
-const uploadPreview = document.querySelector('.img-upload__preview');
+const imgPreview = document.querySelector('.img__preview');
 const imgSize = imgUpload.querySelector('.resize__control--value');
 
 const openFilters = () => {
     imgUpload.classList.remove('hidden');
-    document.addEventListener ('keydown', onFiltersEscPress);
+    document.addEventListener('keydown', onFiltersEscPress);
     imgSize.value = `${Const.RESIZE_PARAMS.DEFAULT}%`;
     resizeImage(1);
 };
 
 const closeFilters = () => {
     imgUpload.classList.add('hidden');
-    clearFileInputField('#upload-file');  
     document.removeEventListener('keydown', onFiltersEscPress);
 };
 
@@ -26,23 +26,22 @@ const onFiltersEscPress = evt => {
     }
 };
 
-const onPhotoUpload = () => {
+uploadFile.addEventListener('change', () => {
     const file = uploadFile.files[0];
-    const reader = new FileReader();
-    reader.onload = (FILE => {
-        return evt => {
-            uploadPreview.innerHTML = `<img class="img__preview" src="${evt.target.result}" title="${escape(FILE.name)}"/>`;
-        };
-    })(file);
-    reader.readAsDataURL(file);
-};
+    const fileName = file.name.toLowerCase();
+    const matches = Const.IMAGE_FORMATS.some(it => fileName.endsWith(it));
 
-const clearFileInputField = Id => {
-    document.querySelector(Id).value = '';
-};
-
-uploadFile.addEventListener ('change', () => {
-    onPhotoUpload();
-    openFilters();
+    if (matches) {
+        const reader = new FileReader();
+        reader.addEventListener('load', () => {
+            imgPreview.src = reader.result;
+            imgPreview.title = `${escape(fileName)}`;
+        });
+        reader.readAsDataURL(file);
+        openFilters();
+        return;
+    }
+    AJAX.statusHandler('Error! Wrong file type');
 });
-uploadCancel.addEventListener ('click', closeFilters);
+
+uploadCancel.addEventListener('click', closeFilters);
