@@ -25,44 +25,32 @@ const getPinPosition = (coord, shift) => {
     return pinPosition;
 };
 
-const onMoveStart = function(evt) {
+scalePin.addEventListener('mousedown', function(evt) {
     evt.preventDefault();
     let coord = evt.clientX;
-    const onMove = moveEvt => {
+    const onMouseMove = moveEvt => {
         moveEvt.preventDefault();
         const shift = coord - moveEvt.clientX;
         coord = moveEvt.clientX;
         window.pinPosition = getPinPosition(coord, shift);
         this.style.left = pinPosition;
         scaleLevel.style.width = pinPosition;
-        // dynamic change of effect saturation
-        setFilter();
+        setFilter(); // dynamic change of effect saturation
     };
-    const onMoveEnd = upEvt => {
+    const onMouseUp = upEvt => {
         upEvt.preventDefault();
         this.style.left = pinPosition;
         scaleLevel.style.width = pinPosition;
         scaleValue.value = setSaturation();
-
-        document.removeEventListener('mousemove', onMove);
-        document.removeEventListener('mouseup', onMoveEnd);
-        document.removeEventListener('touchmove', onMove);
-        document.removeEventListener('touchend', onMoveEnd);
+        document.removeEventListener('mousemove', onMouseMove);
+        document.removeEventListener('mouseup', onMouseUp);
     };
-    document.addEventListener('mousemove', onMove);
-    document.addEventListener('mouseup', onMoveEnd);
-    document.addEventListener('touchmove', onMove);
-    document.addEventListener('touchend', onMoveEnd);
-};
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup', onMouseUp);
+});
 
-scalePin.addEventListener('mousedown', onMoveStart);
-scalePin.addEventListener('touchstart', onMoveStart);
-
-const moveEnd = evt => {
+scaleLine.addEventListener('mouseup', function(evt) {
     evt.preventDefault();
     scalePin.style.left = `${evt.offsetX}px`;
     scaleLevel.style.width = `${evt.offsetX}px`;
-};
-
-scaleLine.addEventListener('mouseup', moveEnd);
-scaleLine.addEventListener('touchend', moveEnd);
+});
