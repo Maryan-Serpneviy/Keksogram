@@ -49,20 +49,17 @@ const onMoveStart = function(evt) {
         document.removeEventListener('touchmove', onMove);
         document.removeEventListener('touchend', onMoveEnd);
     };
-    document.addEventListener('mousemove', onMove);
-    document.addEventListener('mouseup', onMoveEnd);
     document.addEventListener('touchmove', onMove);
+    document.addEventListener('mousemove', onMove);
     document.addEventListener('touchend', onMoveEnd);
+    document.addEventListener('mouseup', onMoveEnd);
 };
 
-scalePin.addEventListener('mousedown', onMoveStart);
 scalePin.addEventListener('touchstart', onMoveStart);
+scalePin.addEventListener('mousedown', onMoveStart);
 
-const moveEnd = evt => {
+scaleLine.addEventListener('mouseup', evt => {
     evt.preventDefault();
     scalePin.style.left = `${evt.offsetX}px`;
     scaleLevel.style.width = `${evt.offsetX}px`;
-};
-
-scaleLine.addEventListener('mouseup', moveEnd);
-//scaleLine.addEventListener('touchend', moveEnd);
+});
