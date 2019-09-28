@@ -1,4 +1,4 @@
-import { getSaturation, dynamicSaturation } from './filters.js';
+import { setSaturation, setFilter } from './filters.js';
 
 const imgUpload = document.querySelector('.img-upload__overlay');
 const scale = imgUpload.querySelector('.scale');
@@ -37,13 +37,13 @@ scalePin.addEventListener('mousedown', function(evt) {
         scaleLevel.style.width = pinPosition;
         window.pinPosition = pinPosition;
         // dynamic change of effect saturation
-        dynamicSaturation();
+        setFilter();
     };
     const onMouseUp = upEvt => {
         upEvt.preventDefault();
         this.style.left = pinPosition;
         scaleLevel.style.width = pinPosition;
-        scaleValue.value = getSaturation();
+        scaleValue.value = setSaturation();
         document.removeEventListener('mousemove', onMouseMove);
         document.removeEventListener('mouseup', onMouseUp);
     };
