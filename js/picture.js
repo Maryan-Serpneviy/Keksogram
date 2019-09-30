@@ -10,6 +10,7 @@ export default class Picture {
         this.likes = data.likes;
         this.comments = data.comments;
         this.description = data.description;
+        this.filter = '';
     }
     static likePicture() {
         let liked = null;

@@ -80,4 +80,4 @@ effectsList.addEventListener('change', evt => {
 });
 scaleLine.addEventListener('click', setFilter);
 
-export { setSaturation, setFilter, imgPreview };
+export { setSaturation, setFilter, Filter };
