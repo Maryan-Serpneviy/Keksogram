@@ -1,7 +1,6 @@
 const pictureTemplate = document.querySelector('#picture-template').content;
 
 export default data => {
-    console.log(data.filter)
     const picture = pictureTemplate.querySelector('.picture__link').cloneNode(true);
     picture.querySelector('.picture__img').style.filter = data.filter;
     picture.querySelector('.picture__img').src = data.url;
