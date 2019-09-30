@@ -8,7 +8,8 @@ export default {
                 cb();
             }, ms);
         };
-    })()
+    })(),
+    getRandomElement: array => array[Math.floor(Math.random() * array.length)]
 };
 
 Array.prototype.shuffle = function() {

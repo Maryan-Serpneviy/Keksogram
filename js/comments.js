@@ -33,7 +33,7 @@ const renderComments = () => {
     }
     comments.splice(0,amount);
     currentComments += amount;
-    commentCount.innerHTML = `Shown <i>${currentComments}</i> comments out of <i>${totalComments}</i>`;
+    commentCount.innerHTML = `Shown <i class="comments-amount">${currentComments}</i> comments out of <i class="comments-amount">${totalComments}</i>`;
 };
 
 let currentUrl = null;
