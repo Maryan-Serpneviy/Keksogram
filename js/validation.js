@@ -3,7 +3,6 @@ import Const from './constants.js';
 const userHashtags = document.querySelector('.text__hashtags');
 
 const validateHashtags = function(hashtagsArr) {
-    console.log(this);
     const lowerCaseHashtags = hashtagsArr.map(element => element.toLowerCase());
     const uniqueHashtags = [...new Set(lowerCaseHashtags)];
 
@@ -12,7 +11,7 @@ const validateHashtags = function(hashtagsArr) {
         this.style.outline = 'none';
     };
     this.setCustomValidity('');
-    this.forEach(element => {
+    hashtagsArr.forEach(element => {
         if (element === '#') {
             this.setCustomValidity(`Hashtag cannot consist of just a lattice. Delete the extra character or add it.`);
             isInvalid();
