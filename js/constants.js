@@ -37,5 +37,6 @@ export default {
     SCALE_LENGTH: 450,
     NEW_AMOUNT: 12,
     LOAD_AMOUNT: 5,
+    MAGIC_NUMBER: 5,
     IMAGE_FORMATS: ['gif', 'jpg', 'jpeg', 'png']
 };

@@ -2,6 +2,7 @@ importModule('constants');
 importModule('utils');
 importModule('ajax');
 importModule('render');
+importModule('gallery');
 importModule('picture');
 importModule('preview');
 importModule('upload');

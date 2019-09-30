@@ -1,23 +1,40 @@
-import AJAX from './ajax.js';
-import render from './render.js';
+import Const from './constants.js';
 
+const bigPicture = document.querySelector('.big-picture');
+const likes = document.querySelector('.likes-count');
 const picturesContainer = document.querySelector('.pictures');
-const imgFilters = document.querySelector('.img-filters');
 
-let picturesData = [];
-Object.freeze(picturesData);
-
-const renderPictures = remoteData => {
-    picturesData = remoteData;
-    remoteData.shuffle();
-    const fragment = document.createDocumentFragment();
-    remoteData.forEach(element => {
-        fragment.appendChild(render(element));
-    });
-    picturesContainer.appendChild(fragment);
-    imgFilters.classList.remove('img-filters--inactive');
-};
-
-AJAX.load(renderPictures, AJAX.statusHandler, 'downloaded');
-
-export { picturesData };
+export default class Picture {
+    constructor(data) {
+        this.url = data.url;
+        this.likes = data.likes;
+        this.comments = data.comments;
+        this.description = data.description;
+    }
+    static likePicture() {
+        let liked = null;
+        return () => {
+            if (!liked) {
+                likes.textContent = parseInt(likes.textContent) + 1;
+                liked = true;
+            } else {
+                likes.textContent = parseInt(likes.textContent) - 1;
+                liked = false;
+            }
+        };
+    }
+    static showBigPicture(picture) {
+        bigPicture.querySelector('.big-picture__img img').src = picture.url;
+        bigPicture.querySelector('.likes-count').textContent = picture.likes;
+        bigPicture.querySelector('.social__caption').textContent = picture.description;
+    }
+    static removePictures() {
+        for (let i = 0; i < Const.MAGIC_NUMBER; i++) {
+            Array.prototype.forEach.call(picturesContainer.childNodes, picture => {
+                if (picture.className === 'picture__link') {
+                    picture.remove();
+                }
+            });
+        }
+    }
+}

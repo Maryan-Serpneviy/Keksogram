@@ -1,5 +1,5 @@
 import Const from './constants.js';
-import AJAX from './ajax.js';
+import { Pictures } from './gallery.js';
 
 const imgContainer = document.querySelector('.pictures');
 const bigPicture = document.querySelector('.big-picture');
@@ -10,12 +10,7 @@ const commentTemplate = document.querySelector('#comment-template')
 const btnLoadMore = bigPicture.querySelector('.social__loadmore');
 const commentCount = bigPicture.querySelector('.social__comment-count .comments-count');
 
-let picturesData = new Array();
 let comments = new Array();
-
-const loadComments = remoteData => picturesData = remoteData;
-
-let currentUrl = null;
 let currentComments = null;
 let totalComments = null;
 
@@ -41,25 +36,24 @@ const renderComments = () => {
     commentCount.innerHTML = `Shown <i>${currentComments}</i> comments out of <i>${totalComments}</i>`;
 };
 
+let currentUrl = null;
+
 const renderCommentsHandler = evt => {
     const target = evt.target;
     if (target.className === 'picture__img') {
-        picturesData.forEach(element => {
-            if (target.src.includes(element.url)) {
-                if (element.url !== currentUrl) {
+        Pictures.forEach(picture => {
+            if (target.src.includes(picture.url)) {
+                if (picture.url !== currentUrl) {
                     commentsContainer.innerHTML = '';
                     currentComments = 0;
                 }
-                comments = element.comments;
-                totalComments = element.comments.length;
-                currentUrl = element.url;
+                comments = picture.comments;
+                totalComments = picture.comments.length;
+                currentUrl = picture.url;
                 renderComments();
             }
         });
     }
 };
-
 imgContainer.addEventListener('click', renderCommentsHandler);
 btnLoadMore.addEventListener('click', renderComments);
-
-AJAX.load(loadComments, AJAX.statusHandler, 'downloaded');
