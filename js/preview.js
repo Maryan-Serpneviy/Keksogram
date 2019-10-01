@@ -7,7 +7,7 @@ const likes = document.querySelector('.likes-count');
 const onDocumentClick = evt => {
     const target = evt.target;
     if (target.classList.contains('big-picture')) {
-        closeBigPicture();
+        Picture.closeBigPicture();
     }
 };
 
