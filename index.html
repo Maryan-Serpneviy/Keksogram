@@ -33,6 +33,7 @@
     <script type="module" src="js/resize.js"></script>
     <script type="module" src="js/sort.js"></script>
     <script type="module" src="js/comments.js"></script>
+    <script type="module" src="js/comment.js"></script>
     -->
     <script src="index.js"></script>
 </head>
@@ -68,7 +69,9 @@
 
                         <fieldset class="img-upload__start">
                             <input type="file" id="upload-file" class="img-upload__input visually-hidden" name="filename" required>
-                            <label for="upload-file" class="img-upload__label img-upload__control">Upload</label>
+                            <label for="upload-file" class="img-upload__label img-upload__control">
+                                <img class="img-upload__label--img" src="./img/upload-button.png">
+                            </label>
                         </fieldset>
 
                         <div class="img-upload__overlay hidden">
@@ -200,7 +203,7 @@
         <div class="page-footer__wrapper">
             <div class="page-footer__copyright copyright">
                 <a class="copyright__link copyright__link--image" href="https://htmlacademy.ru/intensive/javascript"><img src="img/htmla-logo.svg" width="130" height="45" alt="HTML Academy"></a>
-                <p>Created in <a class="copyright__link copyright__link--text" href="https://htmlacademy.ru/intensive/javascript">HTML Academy</a> &copy; 2018</p>
+                <p>Design by <a class="copyright__link copyright__link--text" href="https://htmlacademy.ru/intensive/javascript">HTML Academy</a> &copy; 2018</p>
             </div>
 
             <ul class="page-footer__contacts contacts">
