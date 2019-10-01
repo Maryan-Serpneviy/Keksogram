@@ -2,20 +2,7 @@ import Picture from './picture.js';
 
 const bigPicture = document.querySelector('.big-picture');
 const bigPictureCloseBtn = bigPicture.querySelector('.big-picture__cancel');
-const btnLoadMore = bigPicture.querySelector('.social__loadmore');
 const likes = document.querySelector('.likes-count');
-
-const closeBigPicture = () => {
-    bigPicture.classList.add('hidden');
-    btnLoadMore.classList.remove('hidden');
-    document.removeEventListener('keydown', onBigPictureEscPress);
-};
-
-const onBigPictureEscPress = evt => {
-    if (evt.key === 'Escape') {
-        closeBigPicture();
-    }
-};
 
 const onDocumentClick = evt => {
     const target = evt.target;
@@ -24,6 +11,6 @@ const onDocumentClick = evt => {
     }
 };
 
-bigPictureCloseBtn.addEventListener('click', closeBigPicture);
+bigPictureCloseBtn.addEventListener('click', Picture.closeBigPicture);
 document.addEventListener('click', onDocumentClick);
 likes.addEventListener('click', Picture.likePicture());
