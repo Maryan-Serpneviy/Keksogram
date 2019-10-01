@@ -15,13 +15,10 @@ let currentComments = null;
 let totalComments = null;
 
 const renderComments = () => {
+    btnLoadMore.classList.remove('hidden');
     let amount = 0;
-    if (comments.length === 0) {
-        btnLoadMore.classList.add('hidden');
-        return;
-    } else if (comments.length < Const.LOAD_AMOUNT) {
+    if (comments.length < Const.LOAD_AMOUNT) {
         amount = comments.length;
-        btnLoadMore.classList.add('hidden');
     } else {
         amount = Const.LOAD_AMOUNT;
     }
@@ -34,6 +31,9 @@ const renderComments = () => {
     comments.splice(0,amount);
     currentComments += amount;
     commentCount.innerHTML = `Shown <i class="comments-amount">${currentComments}</i> comments out of <i class="comments-amount">${totalComments}</i>`;
+    if (currentComments === totalComments) {
+        btnLoadMore.classList.add('hidden');
+    }
 };
 
 let currentUrl = null;
@@ -41,15 +41,25 @@ let currentUrl = null;
 const renderCommentsHandler = evt => {
     const target = evt.target;
     if (target.className === 'picture__img') {
+        if (target.src.includes('base64')) {
+            commentsContainer.innerHTML = '';
+        }
+        if (currentComments === totalComments) {
+            btnLoadMore.classList.add('hidden');
+        }
         Pictures.forEach(picture => {
             if (target.src.includes(picture.url)) {
                 if (picture.url !== currentUrl) {
-                    commentsContainer.innerHTML = '';
+                    commentsContainer.innerHTML = '';   
+                    comments = picture.comments;
                     currentComments = 0;
                 }
                 comments = picture.comments;
-                totalComments = picture.comments.length;
                 currentUrl = picture.url;
+                if (currentComments > 0) {
+                    return;
+                }
+                totalComments = picture.comments.length;
                 renderComments();
             }
         });
