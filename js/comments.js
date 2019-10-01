@@ -1,5 +1,5 @@
 import Const from './constants.js';
-import AJAX from './ajax.js';
+import { Pictures } from './gallery.js';
 
 const imgContainer = document.querySelector('.pictures');
 const bigPicture = document.querySelector('.big-picture');
@@ -10,23 +10,15 @@ const commentTemplate = document.querySelector('#comment-template')
 const btnLoadMore = bigPicture.querySelector('.social__loadmore');
 const commentCount = bigPicture.querySelector('.social__comment-count .comments-count');
 
-let picturesData = new Array();
 let comments = new Array();
-
-const loadComments = remoteData => picturesData = remoteData;
-
-let currentUrl = null;
 let currentComments = null;
 let totalComments = null;
 
 const renderComments = () => {
+    btnLoadMore.classList.remove('hidden');
     let amount = 0;
-    if (comments.length === 0) {
-        btnLoadMore.classList.add('hidden');
-        return;
-    } else if (comments.length < Const.LOAD_AMOUNT) {
+    if (comments.length < Const.LOAD_AMOUNT) {
         amount = comments.length;
-        btnLoadMore.classList.add('hidden');
     } else {
         amount = Const.LOAD_AMOUNT;
     }
@@ -38,28 +30,40 @@ const renderComments = () => {
     }
     comments.splice(0,amount);
     currentComments += amount;
-    commentCount.innerHTML = `Shown <i>${currentComments}</i> comments out of <i>${totalComments}</i>`;
+    commentCount.innerHTML = `Shown <i class="comments-amount">${currentComments}</i> comments out of <i class="comments-amount">${totalComments}</i>`;
+    if (currentComments === totalComments) {
+        btnLoadMore.classList.add('hidden');
+    }
 };
+
+let currentUrl = null;
 
 const renderCommentsHandler = evt => {
     const target = evt.target;
     if (target.className === 'picture__img') {
-        picturesData.forEach(element => {
-            if (target.src.includes(element.url)) {
-                if (element.url !== currentUrl) {
+        if (target.src.includes('base64')) {
+            commentsContainer.innerHTML = '';
+        }
+        if (currentComments === totalComments) {
+            btnLoadMore.classList.add('hidden');
+        }
+        Pictures.forEach(picture => {
+            if (target.src.includes(picture.url)) {
+                if (picture.url !== currentUrl) {
                     commentsContainer.innerHTML = '';
+                    comments = picture.comments;
                     currentComments = 0;
                 }
-                comments = element.comments;
-                totalComments = element.comments.length;
-                currentUrl = element.url;
+                comments = picture.comments;
+                currentUrl = picture.url;
+                if (currentComments > 0) {
+                    return;
+                }
+                totalComments = picture.comments.length;
                 renderComments();
             }
         });
     }
 };
-
 imgContainer.addEventListener('click', renderCommentsHandler);
 btnLoadMore.addEventListener('click', renderComments);
-
-AJAX.load(loadComments, AJAX.statusHandler, 'downloaded');

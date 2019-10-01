@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--<meta name="viewport" content="user-scalable=no">-->
     <link rel="stylesheet" href="css/style.css">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <title>Keksogram</title>
@@ -21,6 +22,7 @@
     <script type="module" src="js/utils.js"></script>
     <script type="module" src="js/ajax.js"></script>
     <script type="module" src="js/render.js"></script>
+    <script type="module" src="js/gallery.js"></script>
     <script type="module" src="js/picture.js"></script>
     <script type="module" src="js/preview.js"></script>
     <script type="module" src="js/upload.js"></script>
@@ -31,6 +33,7 @@
     <script type="module" src="js/resize.js"></script>
     <script type="module" src="js/sort.js"></script>
     <script type="module" src="js/comments.js"></script>
+    <script type="module" src="js/comment.js"></script>
     -->
     <script src="index.js"></script>
 </head>
@@ -66,7 +69,9 @@
 
                         <fieldset class="img-upload__start">
                             <input type="file" id="upload-file" class="img-upload__input visually-hidden" name="filename" required>
-                            <label for="upload-file" class="img-upload__label img-upload__control">Upload</label>
+                            <label for="upload-file" class="img-upload__label img-upload__control">
+                                <img class="img-upload__label--img" src="./img/upload-button.png">
+                            </label>
                         </fieldset>
 
                         <div class="img-upload__overlay hidden">
@@ -86,7 +91,7 @@
                                     <fieldset class="img-upload__scale scale">
                                         <input type="number" class="scale__value" name="effect-level" value="20">
                                         <div class="scale__line">
-                                            <div class="scale__pin" ontouchstart="onMoveStart(evt)" tabindex="0">Change image effect saturation</div>
+                                            <div class="scale__pin" tabindex="0">Change image effect saturation</div>
                                             <div class="scale__level">Photo saturation effect</div>
                                         </div>
                                     </fieldset>
@@ -168,7 +173,7 @@
                         <p class="social__caption">Тестим новую камеру! =)</p>
                         <p class="social__likes">Like <span class="likes-count">356</span></p>
                     </div>
-                    <div class="social__comment-count"><span class="comments-count">125</span></div>
+                    <div class="social__comment-count"><span class="comments-count"></span></div>
                     <ul class="social__comments">
                         <!--
                         <li class="social__comment">
@@ -198,7 +203,7 @@
         <div class="page-footer__wrapper">
             <div class="page-footer__copyright copyright">
                 <a class="copyright__link copyright__link--image" href="https://htmlacademy.ru/intensive/javascript"><img src="img/htmla-logo.svg" width="130" height="45" alt="HTML Academy"></a>
-                <p>Created in <a class="copyright__link copyright__link--text" href="https://htmlacademy.ru/intensive/javascript">HTML Academy</a> &copy; 2018</p>
+                <p>Design by <a class="copyright__link copyright__link--text" href="https://htmlacademy.ru/intensive/javascript">HTML Academy</a> &copy; 2018</p>
             </div>
 
             <ul class="page-footer__contacts contacts">
@@ -244,7 +249,7 @@
     <template id="comment-template">
         <li class="social__comment">
             <img class="social__picture" src="" alt="Аватар комментатора фотографии" width="35" height="35">
-            <p class="social__text">BUG</p>
+            <p class="social__text">Comment template</p>
         </li>
     </template>
 </body>

@@ -228,6 +228,7 @@ main {
 .picture__img {
     max-width: auto;
     width: 100%;
+    min-height: 193px;
     height: auto;
 }
 
@@ -359,17 +360,17 @@ main {
     cursor: pointer;
 }
 
-.img-upload__label::after {
+
+.img-upload__label--img {
     content: "";
     position: absolute;
 
     top: 32px;
-    left: 47px;
+    left: 43px;
 
-    width: 86px;
+    min-width: 86px;
     height: 114px;
 
-    background-image: url("../img/upload-button.svg");
     background-repeat: no-repeat;
     background-position: center;
 
@@ -377,8 +378,8 @@ main {
     filter: drop-shadow(0 0 10px #943106);
 }
 
-.img-upload__label:hover::after,
-.img-upload__label:active::after {
+.img-upload__label--img:hover,
+.img-upload__label--img:active {
     -webkit-filter: drop-shadow(0 0 10px #622104);
     filter: drop-shadow(0 0 10px #622104);
 
