@@ -50,7 +50,7 @@ const renderCommentsHandler = evt => {
         Pictures.forEach(picture => {
             if (target.src.includes(picture.url)) {
                 if (picture.url !== currentUrl) {
-                    commentsContainer.innerHTML = '';   
+                    commentsContainer.innerHTML = '';
                     comments = picture.comments;
                     currentComments = 0;
                 }
