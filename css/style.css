@@ -523,13 +523,12 @@ main {
     padding-bottom: 60px;
     overflow: auto;
 
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.87);
 }
 
 .img-upload__preview-container {
     position: relative;
     margin-bottom: 30px;
-    touch-action: none;
 }
 
 
@@ -568,7 +567,7 @@ main {
     text-align: center;
     vertical-align: middle;
 
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.8);
     border: 0;
 }
 
@@ -895,7 +894,7 @@ main {
     font-family: "Open Sans", "Arial", sans-serif;
     font-weight: 700;
 
-    background-color: rgba(255, 231, 82, 0.2);
+    background-color: rgba(255, 231, 82, 0.35);
 
     border: 0;
     border-radius: 4px;
@@ -943,7 +942,7 @@ main {
     max-width: 600px;
     min-height: 600px;
 
-    padding-bottom: 60px;
+    margin-bottom: 60px;
 
     -webkit-transform: translateX(-50%);
     -ms-transform: translateX(-50%);
@@ -1002,12 +1001,12 @@ main {
 .social__caption {
     margin: 0;
     margin-right: 15px;
+    min-width: 200px;
 }
 
 .social__likes {
     margin: 0;
     margin-left: auto;
-    min-width: 125px;
 }
 
 .likes-count {
@@ -1192,6 +1191,8 @@ main {
 .page-footer {
     margin-top: 30px;
     padding-top: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
     border-top: solid 1px #cccccc;
 }
 
@@ -1328,7 +1329,7 @@ main {
     }
 }
 
-@media (min-width: 0) and (max-width: 1023px) {
+@media (min-width: 620px) and (max-width: 1023px) {
     .container {
         width: 600px;
     }
@@ -1347,4 +1348,139 @@ main {
         -ms-grid-row-span: 3;
         grid-row: 1 / span 3;
     }
-}  
+}
+
+@media screen and (max-width: 620px) {
+    body {
+        font-size: 0.8em;
+    }
+
+    .container, .img-upload__wrapper, .img__preview {
+        width: 360px;
+    }
+
+    .img-upload__form,
+    .img-upload__start {
+        background-size: 100%;
+        background-position: top;
+        background-repeat: none;
+    }
+
+    .img-upload__form {
+        background-size: 105%;
+        background-position: -7px -15px;
+        background-color: transparent;
+    }
+
+    .img-upload__label {
+        background-size: 63%;
+        position: absolute;
+        top: 85px;
+        left: 92px;
+    }
+
+    .img-upload__label--img {
+        min-width: 54px;
+        height: 72px;
+        left: 60px;
+        top: 50px;
+    }
+
+    .big-picture__img img {
+        display: block;
+        max-width: 100%;
+        max-height: 300px;
+    }
+
+    .big-picture__cancel {
+        position: absolute;
+        top: -50px;
+        left: 85%;
+    }
+
+    .picture__img {
+        min-height: 0;
+    }
+
+    .social__caption {
+        min-width: 200px;;
+    }
+   
+    .img-upload__cancel {
+        position: absolute;
+        top: 0;
+        left: 310px;
+    }
+
+    .img-upload__preview {
+        width: 100%;
+    }
+
+    .img__preview {
+        max-height: 400px;
+    }
+
+    .img-upload__scale {
+        width: 350px;
+        border-color: #f0e499;
+    }
+
+    .scale__line {
+        width: 307px;
+    }
+
+    .effects__preview, .effects__preview--image  {
+        width: 55px;
+        height: 55px;
+    }
+
+    .text__hashtags, .text__description {
+        width: 350px;
+        font-size: 1.3em;
+    }
+
+    .text__hashtags {
+        height: 40px;
+    }
+
+    .text__description {
+        height: 130px
+    }
+
+    .img-upload__overlay {
+        padding-top: 15px;
+        padding-bottom: 35px
+    }
+
+    .img-upload__preview, .img-upload__preview-container {
+        height: 450px;
+        margin-bottom: 20px;
+    }
+
+    .img-upload__submit {
+        width: 150px;
+        font-size: 1.4em
+    }
+
+    .img-upload__input:focus + .img-upload__label {
+        outline: none;
+    }
+
+    .page-footer {
+        margin-top: 10px;
+        padding-top: 15px;
+    }
+
+    .pictures {
+        -ms-grid-columns: (1fr)[3];
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .img-upload {
+        display: grid;
+        -ms-grid-column: 1;
+        -ms-grid-column-span: 3;
+        grid-column: 1 / span 3;
+        grid-template-rows: 120px 120px 120px;
+    }
+}
